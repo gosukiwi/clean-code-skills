@@ -10,20 +10,21 @@ Agent Skills for writing cleaner TypeScript and React. The skills adapt Robert C
 | Track | Skill | Description | Rules |
 |-------|-------|-------------|-------|
 | TypeScript | `boy-scout` | Orchestrator for small cleanup while editing existing TypeScript | Coordinates TypeScript skills |
-| TypeScript | `typescript-clean-code` | Master TypeScript index and review guide | C1-C5, E1-E2, EH1-EH4, F1-F4, G5, G9, G16, G25, G30, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
+| TypeScript | `typescript-clean-code` | Master TypeScript index and review guide | C1-C5, E1-E2, EH1-EH4, F1-F5, G1-G5, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
 | TypeScript | `clean-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
-| TypeScript | `clean-functions` | Focused functions with clear call sites | F1-F4 |
+| TypeScript | `clean-functions` | Focused functions with clear call sites | F1-F5 |
 | TypeScript | `clean-error-handling` | Exceptions, catch blocks, recoverable failures, and fallbacks | EH1-EH4 |
 | TypeScript | `clean-boundaries` | APIs, JSON, env vars, storage, databases, SDKs, and external data | B1-B4 |
 | TypeScript | `clean-objects-data` | DTOs, domain models, discriminated unions, and object boundaries | OD1-OD5 |
-| TypeScript | `clean-general` | DRY, intent, magic values, clutter, and abstraction levels | G5, G16, G25, G30 |
+| TypeScript | `clean-general` | Duplication, intent, magic values, single responsibility, and dead code | G1-G5 |
 | TypeScript | `clean-names` | Descriptive and unambiguous names | N1-N7 |
 | TypeScript | `clean-tests` | Fast, boundary-aware TypeScript tests | T1-T9 |
-| React | `react-clean-code` | Master React clean-code reference | R1-R10 |
+| React | `react-clean-code` | Master React index and review guide | R1-R11 |
 | React | `clean-components` | Component boundaries, props, JSX, and composition | R1-R3 |
 | React | `clean-hooks` | Effects, dependencies, custom hooks, refs, and memoization | R4, R8 |
 | React | `clean-state` | Local state, derived state, reducers, context, and server state | R5-R7 |
 | React | `clean-react-tests` | React Testing Library and user-facing component tests | R10 |
+| React | `clean-file-organization` | Owner folders, private dependencies, common folders, and CSS modules | R11 |
 
 Use the master skills for broad review and routing or individual skills for targeted guidance.
 
@@ -133,7 +134,7 @@ What improved:
 | C4 | Write comments well if needed |
 | C5 | Never commit commented-out code |
 
-### Functions (F1-F4)
+### Functions (F1-F5)
 
 | Rule | Principle |
 |------|-----------|
@@ -141,16 +142,17 @@ What improved:
 | F2 | No output arguments |
 | F3 | No flag arguments for behavior selection |
 | F4 | Delete dead functions |
+| F5 | Reduce nesting with early returns, helper functions, extraction, or refactoring |
 
 ### General
 
 | Rule | Principle |
 |------|-----------|
-| G5 | DRY: no duplicated knowledge |
-| G9 | Delete dead code |
-| G16 | No obscured intent |
-| G25 | Named constants for domain values |
-| G30 | Functions do one thing |
+| G1 | No duplicated knowledge |
+| G2 | No obscured intent |
+| G3 | Named constants for domain values |
+| G4 | Functions do one thing |
+| G5 | Delete dead code |
 
 ### Error Handling (EH1-EH4)
 
@@ -214,7 +216,7 @@ What improved:
 | T8 | Let coverage gaps reveal design issues |
 | T9 | Keep unit tests fast and isolate slower integration tests |
 
-### React (R1-R10)
+### React (R1-R11)
 
 | Rule | Principle |
 |------|-----------|
@@ -228,3 +230,4 @@ What improved:
 | R8 | Custom hooks own reusable stateful behavior |
 | R9 | Event handlers should describe user intent |
 | R10 | React tests should assert user-visible behavior |
+| R11 | Organize files by dependency ownership |

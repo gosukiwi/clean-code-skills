@@ -24,18 +24,19 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - EH3: Do not swallow failures
 - EH4: Use typed recoverable results only when the project style or domain warrants it
 
-## Functions (F1-F4)
+## Functions (F1-F5)
 - F1: Maximum 3 arguments (use parameter objects/interfaces for more)
 - F2: No output arguments (return values)
 - F3: No flag arguments (split functions)
 - F4: Delete dead functions
+- F5: Reduce nesting with early returns, helper functions, extraction, or refactoring
 
 ## General
-- G5: DRY - no duplication
-- G9: Delete dead code
-- G16: No obscured intent
-- G25: Named constants, not magic numbers
-- G30: Functions do one thing
+- G1: No duplicated knowledge
+- G2: No obscured intent
+- G3: Named constants, not magic values
+- G4: Functions do one thing
+- G5: Delete dead code
 
 ## TypeScript-Specific (TS1-TS3)
 These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
@@ -104,13 +105,14 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | **Functions** | F1 | Max 3 arguments |
 | | F3 | No flag arguments |
 | | F4 | Delete dead functions |
+| | F5 | Reduce nesting |
 | **Errors** | EH1 | Throw useful `Error` objects |
 | | EH3 | Do not swallow failures |
-| **General** | G5 | DRY - no duplication |
-| | G9 | Delete dead code |
-| | G16 | No obscured intent |
-| | G25 | Named constants, not magic numbers |
-| | G30 | Functions do one thing |
+| **General** | G1 | No duplicated knowledge |
+| | G2 | No obscured intent |
+| | G3 | Named constants, not magic values |
+| | G4 | Functions do one thing |
+| | G5 | Delete dead code |
 | **Boundaries** | B1 | Validate external data |
 | | B3 | Hide vendor types |
 | **Objects/Data** | OD3 | Model impossible states out |
@@ -139,5 +141,5 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 
 ## AI Behavior
 
-When reviewing code, identify violations by rule number (e.g., "G5 violation: duplicated logic").
-When fixing or editing code, report what was fixed (e.g., "Fixed: extracted magic number to `SECONDS_PER_DAY` (G25)").
+When reviewing code, identify violations by rule number (e.g., "G1 violation: duplicated logic").
+When fixing or editing code, report what was fixed (e.g., "Fixed: extracted magic value to `SECONDS_PER_DAY` (G3)").

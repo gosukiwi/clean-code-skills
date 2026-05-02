@@ -7,7 +7,7 @@ description: Use when writing, fixing, editing, or reviewing TypeScript with dup
 
 ## Critical Rules
 
-**G5: DRY (Don't Repeat Yourself)**
+**G1: No Duplicated Knowledge**
 
 Every piece of knowledge has one authoritative representation.
 
@@ -24,7 +24,7 @@ function calculateTotal(subtotal: number, state: string): number {
 }
 ```
 
-**G16: No Obscured Intent**
+**G2: No Obscured Intent**
 
 Don't be clever. Be clear.
 
@@ -36,7 +36,7 @@ return ((x & 0x0f) << 4) | (y & 0x0f);
 return packCoordinates(x, y);
 ```
 
-**G25: Replace Magic Numbers with Named Constants**
+**G3: Replace Magic Values with Named Constants**
 
 ```ts
 // Bad
@@ -51,18 +51,18 @@ if (elapsedTime > SECONDS_PER_DAY) {
 }
 ```
 
-**G30: Functions Should Do One Thing**
+**G4: Functions Should Do One Thing**
 
 If you can extract another function, your function does more than one thing.
 
-**G9: Delete Dead Code**
+**G5: Delete Dead Code**
 
 Delete unused branches, helpers, exports, and unreachable code. Git preserves history; dead code makes future design decisions harder to read.
 
 ## Review Checklist
 
 When reviewing AI-generated code, verify:
-- [ ] No duplication (G5)
-- [ ] Clear intent, no magic numbers (G16, G25)
-- [ ] Functions do one thing (G30)
-- [ ] Dead code removed (G9)
+- [ ] No duplicated knowledge (G1)
+- [ ] Clear intent, no magic values (G2, G3)
+- [ ] Functions do one thing (G4)
+- [ ] Dead code removed (G5)

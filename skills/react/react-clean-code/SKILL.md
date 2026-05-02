@@ -3,9 +3,9 @@ name: react-clean-code
 description: Use when writing, fixing, editing, reviewing, or refactoring React components, hooks, state, effects, JSX, or React tests in TypeScript projects.
 ---
 
-# Clean React: Complete Reference
+# Clean React: Index And Review Guide
 
-Use this with the TypeScript clean-code skills. React quality comes from small components, explicit data flow, minimal effects, clear state ownership, and behavior-focused tests.
+Use this with the TypeScript clean-code skills. React quality comes from small components, explicit data flow, minimal effects, clear state ownership, ownership-based file organization, and behavior-focused tests.
 
 ## Core Rules
 
@@ -19,6 +19,7 @@ Use this with the TypeScript clean-code skills. React quality comes from small c
 - R8: Custom hooks own reusable stateful behavior, not arbitrary helper code.
 - R9: Event handlers should describe user intent and keep mutation paths obvious.
 - R10: Tests should assert user-visible behavior, accessibility, and state transitions.
+- R11: Organize files by dependency ownership; keep private dependencies with their owner and shared dependencies in the nearest `common/`.
 
 ## Skill Routing
 
@@ -28,6 +29,7 @@ Use this with the TypeScript clean-code skills. React quality comes from small c
 | Effects, dependency arrays, custom hooks | `clean-hooks` |
 | Local state, derived state, reducers, server state | `clean-state` |
 | React Testing Library tests | `clean-react-tests` |
+| Owner folders, shared dependencies, CSS modules | `clean-file-organization` |
 | Names, comments, functions, general TypeScript | TypeScript clean-code skills |
 
 ## Review Checklist
@@ -42,3 +44,4 @@ Use this with the TypeScript clean-code skills. React quality comes from small c
 - [ ] Custom hooks expose a small, stable API for reusable stateful behavior (R8).
 - [ ] Event handlers describe user intent and keep mutation paths obvious (R9).
 - [ ] Tests use accessible queries and real user interactions (R10).
+- [ ] Files follow dependency ownership, with private dependencies colocated and shared dependencies in nearest `common/` (R11).

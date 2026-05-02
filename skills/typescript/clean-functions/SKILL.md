@@ -1,6 +1,6 @@
 ---
 name: clean-functions
-description: Use when writing, fixing, editing, or refactoring TypeScript functions with too many parameters, boolean flags, parameter mutation, mixed responsibilities, dead helpers, unused exports, or unclear call sites.
+description: Use when writing, fixing, editing, or refactoring TypeScript functions with too many parameters, boolean flags, parameter mutation, deep nesting, mixed responsibilities, dead helpers, unused exports, or unclear call sites.
 ---
 
 # Clean Functions
@@ -86,3 +86,7 @@ Boolean state is fine when it is the domain value being set or returned. It beco
 ## F4: Delete Dead Functions
 
 If it's not called, delete it. No "just in case" code. Git preserves history.
+
+## F5: Reduce Nesting
+
+Aim for at most one or two nested levels in control flow or iterations. Use early returns, helper functions, component extraction, or a real refactor when `if`, `for`, `while`, `map`, `forEach`, or `reduce` nesting makes intent hard to scan.
