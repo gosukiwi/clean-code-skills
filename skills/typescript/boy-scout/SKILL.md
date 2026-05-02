@@ -5,20 +5,7 @@ description: Use when fixing, editing, changing, debugging, or reviewing existin
 
 # The Boy Scout Rule
 
-> "Always leave the campground cleaner than you found it."
-> - Robert Baden-Powell
-
-> "Always check a module in cleaner than when you checked it out."
-> - Robert C. Martin, *Clean Code*
-
-## The Philosophy
-
-You don't have to make every module perfect. You simply have to make it **a little bit better** than when you found it.
-
-If we all followed this simple rule:
-- Our systems would gradually get better as they evolved
-- Teams would care for the system as a whole
-- The relentless deterioration of software would end
+Make small, proportional improvements near the code you already need to touch. Do not turn a narrow task into an unrelated rewrite.
 
 ## When Working on Code
 
@@ -35,6 +22,8 @@ Every time you touch code, look for **at least one small improvement**:
 - Split a function that does multiple things
 - Remove duplication
 - Add missing boundary checks
+- Add context to swallowed or vague errors
+- Move unsafe external data parsing to a boundary
 - Improve test coverage near the changed behavior
 
 ## The Rule in Practice
@@ -104,6 +93,9 @@ This skill coordinates with specialized skills based on what you're doing:
 | Naming variables, functions, classes | `clean-names` |
 | Writing or editing comments | `clean-comments` |
 | Creating or refactoring functions | `clean-functions` |
+| Error handling, fallbacks, catch blocks | `clean-error-handling` |
+| APIs, JSON, env, storage, SDKs | `clean-boundaries` |
+| DTOs, domain models, unions, object boundaries | `clean-objects-data` |
 | Reviewing code quality | `clean-general` |
 | Writing or reviewing tests | `clean-tests` |
 
@@ -130,12 +122,6 @@ When working on code:
 4. Note the improvement made if it is useful context
 
 When reviewing code:
-1. Load `typescript-clean-code` for comprehensive rule checking
+1. Load `typescript-clean-code` for broad TypeScript review and skill routing
 2. Flag violations by rule number
 3. Suggest incremental improvements, not complete rewrites
-
-## The Boy Scout Promise
-
-Every piece of code you touch gets a little better. Not perfect-just better.
-
-Over time, better compounds into excellent.

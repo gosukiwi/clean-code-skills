@@ -126,9 +126,9 @@ Look at which code paths are untested. Often they reveal design problems.
 // Refactor for testability
 ```
 
-## T9: Tests Should Be Fast
+## T9: Tests Should Be Fast Enough To Run
 
-Slow tests don't get run. Keep unit tests under 100ms each.
+Slow tests don't get run. Keep unit tests fast and isolate slower integration tests so developers can run the right feedback loop intentionally.
 
 ```ts
 // Bad - hits real database
@@ -206,4 +206,4 @@ test("user can be activated", () => {
 | T6 | Exhaustively test near bugs |
 | T7 | Look for patterns in failures |
 | T8 | Check coverage when debugging |
-| T9 | Tests must be fast (<100ms) |
+| T9 | Unit tests fast; slower integration tests isolated |

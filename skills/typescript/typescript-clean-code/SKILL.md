@@ -1,11 +1,11 @@
 ---
 name: typescript-clean-code
-description: Use when writing, fixing, editing, reviewing, or refactoring TypeScript code, especially when code has weak types, unclear names, duplicated logic, oversized functions, stale comments, boundary gaps, or brittle tests.
+description: Use when writing, fixing, editing, reviewing, or refactoring TypeScript code, especially weak types, unclear names, duplicated logic, oversized functions, stale comments, boundary gaps, error handling, data modeling, or brittle tests.
 ---
 
-# Clean TypeScript: Complete Reference
+# Clean TypeScript: Index And Review Guide
 
-Use these rules as a review checklist and editing guide for TypeScript. Prefer clear runtime behavior and precise public types over cleverness or type-system escape hatches.
+Use this as the TypeScript entry point. It routes broad review work to focused skills and summarizes the rules most likely to affect design. Prefer clear runtime behavior and precise public types over cleverness or type-system escape hatches.
 
 ## Comments (C1-C5)
 - C1: No metadata in comments (use Git)
@@ -18,49 +18,24 @@ Use these rules as a review checklist and editing guide for TypeScript. Prefer c
 - E1: One command to build (`npm run build`)
 - E2: One command to test (`npm test`)
 
+## Error Handling
+- EH1: Throw `Error` objects with useful context
+- EH2: Catch `unknown` and narrow before reading properties
+- EH3: Do not swallow failures
+- EH4: Use typed recoverable results only when the project style or domain warrants it
+
 ## Functions (F1-F4)
 - F1: Maximum 3 arguments (use parameter objects/interfaces for more)
 - F2: No output arguments (return values)
 - F3: No flag arguments (split functions)
 - F4: Delete dead functions
 
-## General (G1-G36)
-- G1: One language per file
-- G2: Implement expected behavior
-- G3: Handle boundary conditions
-- G4: Don't override safeties
+## General
 - G5: DRY - no duplication
-- G6: Consistent abstraction levels
-- G7: Base classes don't know children
-- G8: Minimize public interface
 - G9: Delete dead code
-- G10: Variables near usage
-- G11: Be consistent
-- G12: Remove clutter
-- G13: No artificial coupling
-- G14: No feature envy
-- G15: No selector arguments
 - G16: No obscured intent
-- G17: Code where expected
-- G18: Prefer instance methods
-- G19: Use explanatory variables
-- G20: Function names say what they do
-- G21: Understand the algorithm
-- G22: Make dependencies physical
-- G23: Prefer polymorphism to if/else
-- G24: Follow conventions (TypeScript style guide + ESLint/Prettier)
 - G25: Named constants, not magic numbers
-- G26: Be precise
-- G27: Structure over convention
-- G28: Encapsulate conditionals
-- G29: Avoid negative conditionals
 - G30: Functions do one thing
-- G31: Make temporal coupling explicit
-- G32: Don't be arbitrary
-- G33: Encapsulate boundary conditions
-- G34: One abstraction level per function
-- G35: Config at high levels
-- G36: Law of Demeter (no train wrecks)
 
 ## TypeScript-Specific (TS1-TS3)
 These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
@@ -68,10 +43,35 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 - TS2: Prefer literal unions, discriminated unions, or const objects for closed sets; use enums only when they match project convention
 - TS3: Type public interfaces explicitly; use `unknown` plus narrowing instead of `any` at boundaries
 
+## Boundaries
+- B1: Treat external data as `unknown` until validated
+- B2: Convert API, JSON, env, storage, database, and SDK shapes into internal types at the edge
+- B3: Keep vendor types out of domain code unless they are the domain
+- B4: Test tricky boundary mappings and invalid external shapes
+
+## Objects and Data
+- OD1: Use plain data for transfer, rendering, serialization, and pattern matching
+- OD2: Use objects/classes when behavior and invariants belong together
+- OD3: Model impossible states out with discriminated unions
+- OD4: Keep DTOs separate from domain models when external shape differs
+- OD5: Avoid excessive object-chain knowledge
+
+## Skill Routing
+
+| Work | Use |
+|------|-----|
+| Broad duplication, intent, magic values, dead code | `clean-general` |
+| Comments and TSDoc | `clean-comments` |
+| Functions, arguments, mutation, flags | `clean-functions` |
+| Error handling and fallbacks | `clean-error-handling` |
+| APIs, JSON, config, storage, SDKs | `clean-boundaries` |
+| DTOs, domain models, classes, unions | `clean-objects-data` |
+| Names | `clean-names` |
+| Tests | `clean-tests` |
+
 ## TypeScript Precision
 - Prefer `satisfies` when validating object literals without widening useful literal types.
 - Avoid `as` assertions unless crossing a boundary that cannot express the type; narrow first when possible.
-- Model impossible states with discriminated unions instead of optional fields that can contradict each other.
 - Keep unsafe parsing at the edge of the system and pass typed values inward.
 
 ## Names (N1-N7)
@@ -92,7 +92,7 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 - T6: Exhaustively test near bugs
 - T7: Look for patterns in failures
 - T8: Check coverage when debugging
-- T9: Tests must be fast (< 100ms each)
+- T9: Unit tests should be fast; isolate slower integration tests
 
 ## Quick Reference Table
 
@@ -104,17 +104,21 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | **Functions** | F1 | Max 3 arguments |
 | | F3 | No flag arguments |
 | | F4 | Delete dead functions |
+| **Errors** | EH1 | Throw useful `Error` objects |
+| | EH3 | Do not swallow failures |
 | **General** | G5 | DRY - no duplication |
 | | G9 | Delete dead code |
 | | G16 | No obscured intent |
-| | G23 | Polymorphism over if/else |
 | | G25 | Named constants, not magic numbers |
 | | G30 | Functions do one thing |
-| | G36 | Avoid long dependency chains |
+| **Boundaries** | B1 | Validate external data |
+| | B3 | Hide vendor types |
+| **Objects/Data** | OD3 | Model impossible states out |
+| | OD5 | Avoid object-chain coupling |
 | **Names** | N1 | Descriptive names |
 | | N5 | Name length matches scope |
 | **Tests** | T5 | Test boundary conditions |
-| | T9 | Tests must be fast |
+| | T9 | Unit tests fast; slower tests isolated |
 
 ## Anti-Patterns (Don't -> Do)
 
@@ -125,6 +129,8 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | `import * as utils` everywhere | Named imports for explicit dependencies |
 | `any` in public API | Specific types or `unknown` + narrowing |
 | `value as User` after parsing JSON | Parse, validate, then return `User` |
+| Empty `catch` block | Handle, add context, or throw a contextual `Error` |
+| One type for API payload and domain model | Boundary DTO plus domain type |
 | Magic number `86400` | `const SECONDS_PER_DAY = 86400` |
 | `process(data, true)` | `processVerbose(data)` |
 | Deep nesting | Guard clauses, early returns |

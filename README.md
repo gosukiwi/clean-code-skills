@@ -10,10 +10,13 @@ Agent Skills for writing cleaner TypeScript and React. The skills adapt Robert C
 | Track | Skill | Description | Rules |
 |-------|-------|-------------|-------|
 | TypeScript | `boy-scout` | Orchestrator for small cleanup while editing existing TypeScript | Coordinates TypeScript skills |
-| TypeScript | `typescript-clean-code` | Master TypeScript clean-code reference | C1-C5, E1-E2, F1-F4, G1-G36, N1-N7, TS1-TS3, T1-T9 |
+| TypeScript | `typescript-clean-code` | Master TypeScript index and review guide | C1-C5, E1-E2, EH1-EH4, F1-F4, G5, G9, G16, G25, G30, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
 | TypeScript | `clean-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
 | TypeScript | `clean-functions` | Focused functions with clear call sites | F1-F4 |
-| TypeScript | `clean-general` | DRY, intent, boundaries, coupling, and abstractions | G5, G16, G23, G25, G30, G36 |
+| TypeScript | `clean-error-handling` | Exceptions, catch blocks, recoverable failures, and fallbacks | EH1-EH4 |
+| TypeScript | `clean-boundaries` | APIs, JSON, env vars, storage, databases, SDKs, and external data | B1-B4 |
+| TypeScript | `clean-objects-data` | DTOs, domain models, discriminated unions, and object boundaries | OD1-OD5 |
+| TypeScript | `clean-general` | DRY, intent, magic values, clutter, and abstraction levels | G5, G16, G25, G30 |
 | TypeScript | `clean-names` | Descriptive and unambiguous names | N1-N7 |
 | TypeScript | `clean-tests` | Fast, boundary-aware TypeScript tests | T1-T9 |
 | React | `react-clean-code` | Master React clean-code reference | R1-R10 |
@@ -22,7 +25,7 @@ Agent Skills for writing cleaner TypeScript and React. The skills adapt Robert C
 | React | `clean-state` | Local state, derived state, reducers, context, and server state | R5-R7 |
 | React | `clean-react-tests` | React Testing Library and user-facing component tests | R10 |
 
-Use the master skills for comprehensive coverage or individual skills for targeted enforcement.
+Use the master skills for broad review and routing or individual skills for targeted guidance.
 
 ## Installation
 
@@ -139,16 +142,43 @@ What improved:
 | F3 | No flag arguments for behavior selection |
 | F4 | Delete dead functions |
 
-### General (G1-G36)
+### General
 
 | Rule | Principle |
 |------|-----------|
 | G5 | DRY: no duplicated knowledge |
+| G9 | Delete dead code |
 | G16 | No obscured intent |
-| G23 | Prefer polymorphism, exhaustive dispatch, or data tables over growing conditionals |
 | G25 | Named constants for domain values |
 | G30 | Functions do one thing |
-| G36 | Avoid excessive object-chain knowledge |
+
+### Error Handling (EH1-EH4)
+
+| Rule | Principle |
+|------|-----------|
+| EH1 | Throw `Error` objects with useful context |
+| EH2 | Catch `unknown` and narrow before reading properties |
+| EH3 | Do not swallow failures |
+| EH4 | Use typed recoverable results only when project style or domain warrants it |
+
+### Boundaries (B1-B4)
+
+| Rule | Principle |
+|------|-----------|
+| B1 | Treat external data as `unknown` until validated |
+| B2 | Convert external shapes into internal types at the edge |
+| B3 | Keep vendor types out of domain code unless they are the domain |
+| B4 | Test tricky boundary mappings and invalid external shapes |
+
+### Objects And Data (OD1-OD5)
+
+| Rule | Principle |
+|------|-----------|
+| OD1 | Use plain data for transfer, rendering, serialization, and pattern matching |
+| OD2 | Use objects/classes when behavior and invariants belong together |
+| OD3 | Model impossible states out with discriminated unions |
+| OD4 | Keep DTOs separate from domain models when external shape differs |
+| OD5 | Avoid excessive object-chain knowledge |
 
 ### Names (N1-N7)
 
@@ -182,7 +212,7 @@ What improved:
 | T6 | Test near bugs exhaustively |
 | T7 | Look for patterns in failures |
 | T8 | Let coverage gaps reveal design issues |
-| T9 | Keep tests fast |
+| T9 | Keep unit tests fast and isolate slower integration tests |
 
 ### React (R1-R10)
 

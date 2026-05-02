@@ -32,10 +32,13 @@ Use this with the TypeScript clean-code skills. React quality comes from small c
 
 ## Review Checklist
 
-- [ ] Components have clear boundaries and names.
-- [ ] Props express one coherent concept.
-- [ ] Boolean props do not create many rendering modes.
-- [ ] State is not duplicated from props or derived data.
-- [ ] Effects are necessary and have correct dependencies.
-- [ ] Custom hooks expose a small, stable API.
-- [ ] Tests use accessible queries and real user interactions.
+- [ ] Components have clear boundaries and one reason to change (R1).
+- [ ] Props express one coherent concept and avoid mode explosions (R2).
+- [ ] JSX is shallow enough to scan (R3).
+- [ ] Effects synchronize with external systems and have correct dependencies (R4).
+- [ ] State is not duplicated from props or derived data (R5).
+- [ ] State ownership is local where possible and lifted only when needed (R6).
+- [ ] Server/cache state is separate from local UI state (R7).
+- [ ] Custom hooks expose a small, stable API for reusable stateful behavior (R8).
+- [ ] Event handlers describe user intent and keep mutation paths obvious (R9).
+- [ ] Tests use accessible queries and real user interactions (R10).
