@@ -3,57 +3,69 @@
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Compatible-blue)](https://agentskills.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Agent Skills for writing cleaner TypeScript, React, and CSS. The skills adapt Robert C. Martin's Clean Code rules for modern TypeScript projects and add focused guidance for React components, hooks, state, UI tests, and maintainable styling.
+Agent Skills for writing cleaner TypeScript, React, and CSS. The skills adapt
+Robert C. Martin's Clean Code rules for modern TypeScript projects and add
+focused guidance for React components, hooks, state, UI tests, and
+maintainable styling.
 
 ## What's Included
 
 | Track | Skill | Description | Rules |
 |-------|-------|-------------|-------|
 | All | `clean-code` | Top-level router for clean-code review across TypeScript, React, and CSS | Routes to relevant skills |
-| TypeScript | `boy-scout` | Orchestrator for small cleanup while editing existing TypeScript | Coordinates TypeScript skills |
-| TypeScript | `typescript-clean-code` | Master TypeScript index and review guide | C1-C5, E1-E2, EH1-EH4, F1-F5, G1-G5, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
-| TypeScript | `clean-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
-| TypeScript | `clean-functions` | Focused functions with clear call sites | F1-F5 |
-| TypeScript | `clean-error-handling` | Exceptions, catch blocks, recoverable failures, and fallbacks | EH1-EH4 |
-| TypeScript | `clean-boundaries` | APIs, JSON, env vars, storage, databases, SDKs, and external data | B1-B4 |
-| TypeScript | `clean-objects-data` | DTOs, domain models, discriminated unions, and object boundaries | OD1-OD5 |
-| TypeScript | `clean-general` | Duplication, intent, magic values, single responsibility, and dead code | G1-G5 |
-| TypeScript | `clean-names` | Descriptive and unambiguous names | N1-N7 |
-| TypeScript | `clean-tests` | Fast, boundary-aware TypeScript tests | T1-T9 |
-| React | `react-clean-code` | Master React index and review guide | R1-R11 |
-| React | `clean-components` | Component boundaries, props, JSX, and composition | R1-R3 |
-| React | `clean-hooks` | Effects, dependencies, custom hooks, refs, and memoization | R4, R8 |
-| React | `clean-state` | Local state, derived state, reducers, context, and server state | R5-R7 |
+| TypeScript | `clean-as-you-go` | Orchestrator for small cleanup while editing existing TypeScript | Coordinates TypeScript skills |
+| TypeScript | `clean-typescript` | Master TypeScript index and review guide | C1-C5, E1-E2, EH1-EH4, F1-F5, G1-G5, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
+| TypeScript | `clean-typescript-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
+| TypeScript | `clean-typescript-functions` | Focused functions with clear call sites | F1-F5 |
+| TypeScript | `clean-typescript-error-handling` | Exceptions, catch blocks, recoverable failures, and fallbacks | EH1-EH4 |
+| TypeScript | `clean-typescript-boundaries` | APIs, JSON, env vars, storage, databases, SDKs, and external data | B1-B4 |
+| TypeScript | `clean-typescript-objects-data` | DTOs, domain models, discriminated unions, and object boundaries | OD1-OD5 |
+| TypeScript | `clean-typescript-general` | Duplication, intent, magic values, single responsibility, and dead code | G1-G5 |
+| TypeScript | `clean-typescript-names` | Descriptive and unambiguous names | N1-N7 |
+| TypeScript | `clean-typescript-tests` | Fast, boundary-aware TypeScript tests | T1-T9 |
+| React | `clean-react` | Master React index and review guide | R1-R11 |
+| React | `clean-react-components` | Component boundaries, props, JSX, and composition | R1-R3 |
+| React | `clean-react-hooks` | Effects, dependencies, custom hooks, refs, and memoization | R4, R8 |
+| React | `clean-react-state` | Local state, derived state, reducers, context, and server state | R5-R7 |
 | React | `clean-react-tests` | React Testing Library and user-facing component tests | R10 |
-| React | `clean-file-organization` | Owner folders, private dependencies, common folders, and CSS modules | R11 |
-| CSS | `css-clean-code` | Tokens, layout, selectors, responsive behavior, and visual accessibility | CSS1-CSS8 |
+| React | `clean-react-file-organization` | Owner folders, private dependencies, common folders, and CSS modules | R11 |
+| CSS | `clean-css` | Tokens, layout, selectors, responsive behavior, and visual accessibility | CSS1-CSS8 |
 
-Use `clean-code` for broad review across the full collection. Use the track master skills for TypeScript or React review and individual skills for targeted guidance.
+Use `clean-code` for broad review across the full collection. Use the track
+master skills for TypeScript or React review and individual skills for
+targeted guidance.
 
 ## Installation
 
-Copy the skills you want into your agent's skills directory. For React projects, install `clean-code` plus the TypeScript, React, and CSS tracks.
+Skills are designed to be used together. The recommended way to install them
+is with the install script. From this repo, run:
+
+```bash
+bin/install /path/to/your-project
+```
+
+The installer supports `.codex`, `.agents`, and `.claude` project directories.
+If none exist, it prompts you to choose which one to create.
 
 ## Ask your agent
 
-The best way is to just open up your coding agent, such as Codex, and type:
+Alternatively, just open up your coding agent (e.g. Codex), and type:
 
     What's the best way to install these skills? https://github.com/gosukiwi/clean-code-react
-
 
 ## Manual
 
 This will depend on the tool that you have but you can always just copy the
-skills into `.agent/skills` and it should work. It can be project-level or
-user-level.
+skills into `.codex/skills`, `.agents/skills`, or `.claude/skills`. It can be
+project-level or user-level.
 
 ```bash
 # Project-level
-mkdir -p .agent/skills
-cp -r skills/clean-code .agent/skills/
-cp -r skills/typescript/* .agent/skills/
-cp -r skills/react/* .agent/skills/
-cp -r skills/css/* .agent/skills/
+mkdir -p .codex/skills
+cp -r skills/clean-code .codex/skills/
+cp -r skills/typescript/* .codex/skills/
+cp -r skills/react/* .codex/skills/
+cp -r skills/css/* .codex/skills/
 ```
 
 ## Usage
@@ -61,7 +73,9 @@ cp -r skills/css/* .agent/skills/
 Once installed, skills activate automatically based on context, but depending
 on your agent you can call them manually with `/` or `$`.
 
-For broad review, ask for `clean-code`, for example: "Review this using clean code." The `clean-code` skill routes to every relevant TypeScript, React, and CSS skill.
+For broad review, ask for `clean-code`, for example: "Review this using clean
+code." The `clean-code` skill routes to every relevant TypeScript, React, and
+CSS skill.
 
 ## Example
 
