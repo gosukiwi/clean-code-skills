@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-functions
-description: Use when writing, fixing, editing, or refactoring TypeScript functions with too many parameters, boolean flags, parameter mutation, deep nesting, mixed responsibilities, dead helpers, unused exports, or unclear call sites.
+description: Use when writing, fixing, editing, or refactoring TypeScript functions with too many parameters, boolean flags, parameter mutation, deep nesting, mixed abstraction levels, complex conditionals, dead helpers, unused exports, or unclear call sites.
 ---
 
 # Clean Functions
@@ -90,3 +90,88 @@ If it's not called, delete it. No "just in case" code. Git preserves history.
 ## F5: Reduce Nesting
 
 Aim for at most one or two nested levels in control flow or iterations. Use early returns, helper functions, component extraction, or a real refactor when `if`, `for`, `while`, `map`, `forEach`, or `reduce` nesting makes intent hard to scan.
+
+```ts
+// Bad - the useful path is buried
+function getInvoiceTotal(invoice: Invoice): number {
+  if (invoice.status !== "void") {
+    if (invoice.items.length > 0) {
+      return invoice.items.reduce((total, item) => total + item.price, 0);
+    }
+  }
+
+  return 0;
+}
+
+// Good - guard clauses keep the normal path visible
+function getInvoiceTotal(invoice: Invoice): number {
+  if (invoice.status === "void") {
+    return 0;
+  }
+
+  if (invoice.items.length === 0) {
+    return 0;
+  }
+
+  return invoice.items.reduce((total, item) => total + item.price, 0);
+}
+```
+
+## F6: Keep One Level Of Abstraction Per Function
+
+A function should not mix high-level policy with low-level details. Extract the details or inline the abstraction so every line reads at the same conceptual level.
+
+```ts
+// Bad - business rule, string parsing, and storage detail are interleaved
+function activateUser(rawUser: string, storage: Storage) {
+  const [id, email] = rawUser.split(",");
+  if (!email.includes("@")) {
+    throw new Error("Invalid email");
+  }
+  storage.setItem(`user:${id}`, JSON.stringify({ id, email, active: true }));
+}
+
+// Good - this function reads at the policy level
+function activateUser(rawUser: string, storage: UserStorage) {
+  const user = parseUser(rawUser);
+  assertCanActivate(user);
+  storage.save(activate(user));
+}
+```
+
+## F7: Name And Simplify Complex Conditions
+
+Extract complex conditions into named predicates when the condition represents a domain idea. Use De Morgan's laws when a negated compound condition is harder to read than the equivalent positive form.
+
+```ts
+const isPrivilegedUser = user.role === "admin" || user.role === "owner";
+
+// Bad - negated compound condition
+if (!(isPrivilegedUser || user.hasBillingAccess)) {
+  return false;
+}
+
+// Good - De Morgan's law makes each rejected case visible
+if (!isPrivilegedUser && !user.hasBillingAccess) {
+  return false;
+}
+```
+
+```ts
+// Bad - hard to tell what rule is being checked
+if (!(user.role === "admin" || user.role === "owner") || user.suspended || !account.active) {
+  return false;
+}
+
+// Good - the condition has a name
+if (!canManageAccount(user, account)) {
+  return false;
+}
+
+function canManageAccount(user: User, account: Account): boolean {
+  const hasPrivilegedRole = user.role === "admin" || user.role === "owner";
+  return hasPrivilegedRole && !user.suspended && account.active;
+}
+```
+
+Prefer positive condition names such as `canManageAccount` or `isEligibleForRetry`. Avoid names like `isNotInvalid` unless the domain already uses that wording.

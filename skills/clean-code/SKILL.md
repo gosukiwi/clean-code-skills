@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: Use when writing, fixing, editing, reviewing, or refactoring code with clean code expectations across TypeScript, React, CSS, tests, names, functions, comments, boundaries, state, components, hooks, layout, or styling.
+description: Use when writing, fixing, editing, reviewing, or refactoring code with clean code expectations across TypeScript, React, CSS, tests, names, functions, modules, async flows, comments, boundaries, state, components, hooks, layout, or styling.
 ---
 
 # Clean Code: Collection Router
@@ -11,7 +11,7 @@ Use this as the top-level entry point for the clean-code skill collection. It sh
 
 | Work | Use |
 |------|-----|
-| Broad TypeScript quality, names, functions, comments, boundaries, data modeling, errors, tests | `clean-typescript` |
+| Broad TypeScript quality, names, functions, modules, async flows, comments, boundaries, data modeling, errors, tests | `clean-typescript` |
 | React components, JSX, hooks, effects, state, React tests, file ownership | `clean-react` plus `clean-typescript` |
 | CSS, CSS Modules, CSS-in-JS, Tailwind classes, inline styles, tokens, layout, visual accessibility | `clean-css` |
 | Small cleanup near existing TypeScript edits | `clean-as-you-go` plus the relevant focused TypeScript skill |

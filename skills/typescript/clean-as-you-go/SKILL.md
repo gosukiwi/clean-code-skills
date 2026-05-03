@@ -17,12 +17,16 @@ Every time you touch code, look for **at least one small improvement**:
 - Remove dead code or unused imports
 - Replace a magic value with a named constant when the value has domain meaning
 - Extract a deeply nested block into a well-named function
+- Move a local variable declaration next to the code that uses it
+- Inline a pointless wrapper or give an abstraction real responsibility
 
 ### Deeper Improvements
 - Split a function that does multiple things
 - Remove duplication
+- Simplify a complex conditional with a named predicate
 - Add missing boundary checks
 - Add context to swallowed or vague errors
+- Make async ordering, retry, timeout, or cancellation behavior explicit
 - Move unsafe external data parsing to a boundary
 - Improve test coverage near the changed behavior
 
@@ -93,6 +97,8 @@ This skill coordinates with specialized skills based on what you're doing:
 | Naming variables, functions, classes | `clean-typescript-names` |
 | Writing or editing comments | `clean-typescript-comments` |
 | Creating or refactoring functions | `clean-typescript-functions` |
+| File order, module cohesion, classes, or over-abstraction | `clean-typescript-modules` |
+| Promises, async ordering, retries, timeouts, cancellation, races | `clean-typescript-async` |
 | Error handling, fallbacks, catch blocks | `clean-typescript-error-handling` |
 | APIs, JSON, env, storage, SDKs | `clean-typescript-boundaries` |
 | DTOs, domain models, unions, object boundaries | `clean-typescript-objects-data` |

@@ -1,6 +1,6 @@
 ---
 name: clean-typescript
-description: Use when writing, fixing, editing, reviewing, or refactoring TypeScript code, especially weak types, unclear names, duplicated logic, oversized functions, stale comments, boundary gaps, error handling, data modeling, or brittle tests.
+description: Use when writing, fixing, editing, reviewing, or refactoring TypeScript code, especially weak types, unclear names, duplicated logic, oversized functions, stale comments, boundary gaps, error handling, data modeling, async flows, module structure, or brittle tests.
 ---
 
 # Clean TypeScript: Index And Review Guide
@@ -24,12 +24,14 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - EH3: Do not swallow failures
 - EH4: Use typed recoverable results only when the project style or domain warrants it
 
-## Functions (F1-F5)
+## Functions (F1-F7)
 - F1: Maximum 3 arguments (use parameter objects/interfaces for more)
 - F2: No output arguments (return values)
 - F3: No flag arguments (split functions)
 - F4: Delete dead functions
 - F5: Reduce nesting with early returns, helper functions, extraction, or refactoring
+- F6: Keep one level of abstraction per function
+- F7: Name and simplify complex conditions
 
 ## General
 - G1: No duplicated knowledge
@@ -37,6 +39,20 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - G3: Named constants, not magic values
 - G4: Functions do one thing
 - G5: Delete dead code
+
+## Modules
+- M1: Keep declarations close to use
+- M2: Order code for top-down reading
+- M3: Keep modules cohesive
+- M4: Keep dependency direction obvious
+- M5: Avoid empty abstractions
+
+## Async
+- A1: Isolate async workflows
+- A2: Make ordering explicit
+- A3: Avoid shared mutable state across awaits
+- A4: Make cancellation, timeouts, retries, and fallbacks visible
+- A5: Test race-prone behavior
 
 ## TypeScript-Specific (TS1-TS3)
 These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
@@ -64,6 +80,8 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | Broad duplication, intent, magic values, dead code | `clean-typescript-general` |
 | Comments and TSDoc | `clean-typescript-comments` |
 | Functions, arguments, mutation, flags | `clean-typescript-functions` |
+| Modules, classes, file order, cohesion, coupling, over-abstraction | `clean-typescript-modules` |
+| Promises, retries, timeouts, cancellation, race conditions | `clean-typescript-async` |
 | Error handling and fallbacks | `clean-typescript-error-handling` |
 | APIs, JSON, config, storage, SDKs | `clean-typescript-boundaries` |
 | DTOs, domain models, classes, unions | `clean-typescript-objects-data` |
@@ -106,6 +124,14 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | | F3 | No flag arguments |
 | | F4 | Delete dead functions |
 | | F5 | Reduce nesting |
+| | F6 | One abstraction level |
+| | F7 | Name complex conditions |
+| **Modules** | M1 | Declarations near use |
+| | M3 | Cohesive modules |
+| | M5 | No empty abstractions |
+| **Async** | A2 | Explicit ordering |
+| | A3 | Avoid shared mutation across awaits |
+| | A5 | Test race-prone behavior |
 | **Errors** | EH1 | Throw useful `Error` objects |
 | | EH3 | Do not swallow failures |
 | **General** | G1 | No duplicated knowledge |
@@ -136,6 +162,10 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | Magic number `86400` | `const SECONDS_PER_DAY = 86400` |
 | `process(data, true)` | `processVerbose(data)` |
 | Deep nesting | Guard clauses, early returns |
+| `const value` at top but used far below | Declare it next to the code that uses it |
+| `if (!(a || b) || !c)` | Extract a named predicate or simplify with De Morgan's laws |
+| One-line wrapper with no rule or boundary | Inline it or give it real responsibility |
+| `forEach(async () => ...)` | `await Promise.all(...)` or use sequential `for...of` |
 | Reaching through `obj.a.b.c.value` | Ask the owner object for the value |
 | 100+ line function | Split by responsibility |
 
