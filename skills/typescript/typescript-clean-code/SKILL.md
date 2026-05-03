@@ -15,8 +15,8 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - C5: Never commit commented-out code
 
 ## Environment (E1-E2)
-- E1: One command to build (`npm run build`)
-- E2: One command to test (`npm test`)
+- E1: One project-standard command to build (for example, `npm run build`)
+- E2: One project-standard command to test (for example, `npm test`)
 
 ## Error Handling
 - EH1: Throw `Error` objects with useful context

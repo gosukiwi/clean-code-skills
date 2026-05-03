@@ -32,7 +32,7 @@ Use `clean-code` for broad review across the full collection. Use the track mast
 
 ## Installation
 
-Copy the skills you want into your agent's skills directory. For React projects, install the TypeScript, React, and CSS tracks.
+Copy the skills you want into your agent's skills directory. For React projects, install `clean-code` plus the TypeScript, React, and CSS tracks.
 
 ## Ask your agent
 

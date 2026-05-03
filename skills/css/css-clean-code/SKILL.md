@@ -3,7 +3,7 @@ name: css-clean-code
 description: Use when writing, fixing, editing, reviewing, or refactoring CSS, CSS Modules, CSS-in-JS, styled-components, StyleX, Tailwind class usage, inline style props, design tokens, layout, visual accessibility, or responsive UI styling.
 ---
 
-# Clean CSS
+# Clean CSS: Index And Review Guide
 
 CSS should express design intent through the project's styling system, keep layout relationships predictable, and preserve accessibility across states and viewport sizes.
 

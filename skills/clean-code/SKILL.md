@@ -28,6 +28,20 @@ When asked to review using clean code:
 3. Follow the track skill routing tables for focused skills when a concern is specific.
 4. Report findings by severity with rule IDs from the relevant skill.
 
+## Review Output
+
+Lead with findings. For each finding, include:
+
+```text
+Severity: Block | Fix | Suggest
+Rule: <rule-id>
+Location: path/to/file:line
+Issue: What is wrong and why it matters.
+Suggested fix: Concrete next step.
+```
+
+If there are no findings, say that clearly and note any meaningful residual risk, such as missing tests or unverified visual behavior.
+
 ## Editing Process
 
 When editing code with clean-code expectations:
