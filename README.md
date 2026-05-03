@@ -3,7 +3,7 @@
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Compatible-blue)](https://agentskills.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Agent Skills for writing cleaner TypeScript and React. The skills adapt Robert C. Martin's Clean Code rules for modern TypeScript projects and add React-specific guidance for components, hooks, state, and UI tests.
+Agent Skills for writing cleaner TypeScript, React, and CSS. The skills adapt Robert C. Martin's Clean Code rules for modern TypeScript projects and add React-specific guidance for components, hooks, state, UI tests, and maintainable styling.
 
 ## What's Included
 
@@ -25,12 +25,13 @@ Agent Skills for writing cleaner TypeScript and React. The skills adapt Robert C
 | React | `clean-state` | Local state, derived state, reducers, context, and server state | R5-R7 |
 | React | `clean-react-tests` | React Testing Library and user-facing component tests | R10 |
 | React | `clean-file-organization` | Owner folders, private dependencies, common folders, and CSS modules | R11 |
+| CSS | `clean-css` | Tokens, layout, selectors, responsive behavior, and visual accessibility | CSS1-CSS8 |
 
 Use the master skills for broad review and routing or individual skills for targeted guidance.
 
 ## Installation
 
-Copy the skills you want into your agent's skills directory. For React projects, install both TypeScript and React tracks.
+Copy the skills you want into your agent's skills directory. For React projects, install the TypeScript, React, and CSS tracks.
 
 ## Ask your agent
 
@@ -50,6 +51,7 @@ user-level.
 mkdir -p .agent/skills
 cp -r skills/typescript/* .agent/skills/
 cp -r skills/react/* .agent/skills/
+cp -r skills/css/* .agent/skills/
 ```
 
 ## Usage
@@ -231,3 +233,16 @@ What improved:
 | R9 | Event handlers should describe user intent |
 | R10 | React tests should assert user-visible behavior |
 | R11 | Organize files by dependency ownership |
+
+### CSS (CSS1-CSS8)
+
+| Rule | Principle |
+|------|-----------|
+| CSS1 | Use tokens for repeated design values |
+| CSS2 | Keep declarations purposeful |
+| CSS3 | Prefer layout primitives over manual spacing and positioning |
+| CSS4 | Keep selectors shallow and specificity low |
+| CSS5 | Preserve focus, contrast, reduced motion, and states |
+| CSS6 | Avoid static inline styles |
+| CSS7 | Keep responsive behavior explicit and stable |
+| CSS8 | Avoid duplicated style knowledge |
