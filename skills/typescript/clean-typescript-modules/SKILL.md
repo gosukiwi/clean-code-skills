@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-modules
-description: Use when writing, fixing, editing, or reviewing TypeScript modules, classes, file structure, declaration order, vertical formatting, dependency direction, cohesion, coupling, or over-abstraction.
+description: Use when writing, fixing, editing, or reviewing TypeScript modules, classes, file structure, declaration order, vertical formatting, dependency direction, cohesion, coupling, dependency construction, wiring, or over-abstraction.
 ---
 
 # Clean TypeScript Modules
@@ -113,3 +113,26 @@ function getDisplayName(user: User): string {
 ```
 
 Delete abstractions that no longer earn their place. Small direct code is cleaner than a maze of thin indirection.
+
+## M6: Separate Construction From Use
+
+Keep dependency construction, environment/config reads, SDK clients, database connections, clocks, random generators, and other external state near application boundaries. Domain behavior should receive ready-to-use dependencies instead of constructing them internally.
+
+```ts
+// Bad - business behavior is mixed with construction and config
+async function sendReceipt(order: Order) {
+  const payments = new StripePayments(process.env.STRIPE_KEY);
+  const emailer = new SendGridEmailer(process.env.SENDGRID_KEY);
+
+  const receipt = await payments.createReceipt(order);
+  await emailer.send(order.customerEmail, receipt);
+}
+
+// Good - construction happens at the edge; behavior uses explicit dependencies
+async function sendReceipt(order: Order, payments: Payments, emailer: Emailer) {
+  const receipt = await payments.createReceipt(order);
+  await emailer.send(order.customerEmail, receipt);
+}
+```
+
+Do not add dependency injection ceremony for simple values or harmless local objects. This rule matters most when construction touches I/O, config, time, randomness, vendor SDKs, persistence, or anything that makes behavior hard to test or change.

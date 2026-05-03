@@ -14,10 +14,10 @@ maintainable styling.
 |-------|-------|-------------|-------|
 | All | `clean-code` | Top-level router for clean-code review across TypeScript, React, and CSS | Routes to relevant skills |
 | TypeScript | `clean-as-you-go` | Orchestrator for small cleanup while editing existing TypeScript | Coordinates TypeScript skills |
-| TypeScript | `clean-typescript` | Master TypeScript index and review guide | A1-A5, C1-C5, E1-E2, EH1-EH4, F1-F7, G1-G5, M1-M5, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
+| TypeScript | `clean-typescript` | Master TypeScript index and review guide | A1-A5, C1-C5, E1-E2, EH1-EH4, F1-F7, G1-G5, M1-M6, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
 | TypeScript | `clean-typescript-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
 | TypeScript | `clean-typescript-functions` | Focused functions with clear call sites | F1-F7 |
-| TypeScript | `clean-typescript-modules` | Cohesive files, classes, declaration locality, and useful abstractions | M1-M5 |
+| TypeScript | `clean-typescript-modules` | Cohesive files, classes, declaration locality, dependency construction, and useful abstractions | M1-M6 |
 | TypeScript | `clean-typescript-async` | Explicit async ordering, cancellation, retries, timeouts, and race-prone tests | A1-A5 |
 | TypeScript | `clean-typescript-error-handling` | Exceptions, catch blocks, recoverable failures, and fallbacks | EH1-EH4 |
 | TypeScript | `clean-typescript-boundaries` | APIs, JSON, env vars, storage, databases, SDKs, and external data | B1-B4 |
@@ -178,7 +178,7 @@ What improved:
 | F6 | Keep one level of abstraction per function |
 | F7 | Name and simplify complex conditions |
 
-### Modules (M1-M5)
+### Modules (M1-M6)
 
 | Rule | Principle |
 |------|-----------|
@@ -187,6 +187,7 @@ What improved:
 | M3 | Keep modules cohesive |
 | M4 | Keep dependency direction obvious |
 | M5 | Avoid empty abstractions |
+| M6 | Separate construction from use |
 
 ### Async (A1-A5)
 

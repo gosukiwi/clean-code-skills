@@ -46,6 +46,7 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - M3: Keep modules cohesive
 - M4: Keep dependency direction obvious
 - M5: Avoid empty abstractions
+- M6: Separate construction from use
 
 ## Async
 - A1: Isolate async workflows
@@ -80,7 +81,7 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | Broad duplication, intent, magic values, dead code | `clean-typescript-general` |
 | Comments and TSDoc | `clean-typescript-comments` |
 | Functions, arguments, mutation, flags | `clean-typescript-functions` |
-| Modules, classes, file order, cohesion, coupling, over-abstraction | `clean-typescript-modules` |
+| Modules, classes, file order, cohesion, coupling, dependency construction, over-abstraction | `clean-typescript-modules` |
 | Promises, retries, timeouts, cancellation, race conditions | `clean-typescript-async` |
 | Error handling and fallbacks | `clean-typescript-error-handling` |
 | APIs, JSON, config, storage, SDKs | `clean-typescript-boundaries` |
@@ -129,6 +130,7 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | **Modules** | M1 | Declarations near use |
 | | M3 | Cohesive modules |
 | | M5 | No empty abstractions |
+| | M6 | Separate construction from use |
 | **Async** | A2 | Explicit ordering |
 | | A3 | Avoid shared mutation across awaits |
 | | A5 | Test race-prone behavior |
@@ -165,6 +167,7 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | `const value` at top but used far below | Declare it next to the code that uses it |
 | `if (!(a || b) || !c)` | Extract a named predicate or simplify with De Morgan's laws |
 | One-line wrapper with no rule or boundary | Inline it or give it real responsibility |
+| `new SdkClient(process.env.KEY)` inside domain behavior | Construct at the edge and pass a dependency in |
 | `forEach(async () => ...)` | `await Promise.all(...)` or use sequential `for...of` |
 | Reaching through `obj.a.b.c.value` | Ask the owner object for the value |
 | 100+ line function | Split by responsibility |
