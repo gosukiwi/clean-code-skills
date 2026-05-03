@@ -1,5 +1,5 @@
 ---
-name: clean-css
+name: css-clean-code
 description: Use when writing, fixing, editing, reviewing, or refactoring CSS, CSS Modules, CSS-in-JS, styled-components, StyleX, Tailwind class usage, inline style props, design tokens, layout, visual accessibility, or responsive UI styling.
 ---
 

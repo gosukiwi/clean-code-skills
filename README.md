@@ -3,12 +3,13 @@
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Compatible-blue)](https://agentskills.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Agent Skills for writing cleaner TypeScript, React, and CSS. The skills adapt Robert C. Martin's Clean Code rules for modern TypeScript projects and add React-specific guidance for components, hooks, state, UI tests, and maintainable styling.
+Agent Skills for writing cleaner TypeScript, React, and CSS. The skills adapt Robert C. Martin's Clean Code rules for modern TypeScript projects and add focused guidance for React components, hooks, state, UI tests, and maintainable styling.
 
 ## What's Included
 
 | Track | Skill | Description | Rules |
 |-------|-------|-------------|-------|
+| All | `clean-code` | Top-level router for clean-code review across TypeScript, React, and CSS | Routes to relevant skills |
 | TypeScript | `boy-scout` | Orchestrator for small cleanup while editing existing TypeScript | Coordinates TypeScript skills |
 | TypeScript | `typescript-clean-code` | Master TypeScript index and review guide | C1-C5, E1-E2, EH1-EH4, F1-F5, G1-G5, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
 | TypeScript | `clean-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
@@ -25,9 +26,9 @@ Agent Skills for writing cleaner TypeScript, React, and CSS. The skills adapt Ro
 | React | `clean-state` | Local state, derived state, reducers, context, and server state | R5-R7 |
 | React | `clean-react-tests` | React Testing Library and user-facing component tests | R10 |
 | React | `clean-file-organization` | Owner folders, private dependencies, common folders, and CSS modules | R11 |
-| CSS | `clean-css` | Tokens, layout, selectors, responsive behavior, and visual accessibility | CSS1-CSS8 |
+| CSS | `css-clean-code` | Tokens, layout, selectors, responsive behavior, and visual accessibility | CSS1-CSS8 |
 
-Use the master skills for broad review and routing or individual skills for targeted guidance.
+Use `clean-code` for broad review across the full collection. Use the track master skills for TypeScript or React review and individual skills for targeted guidance.
 
 ## Installation
 
@@ -49,6 +50,7 @@ user-level.
 ```bash
 # Project-level
 mkdir -p .agent/skills
+cp -r skills/clean-code .agent/skills/
 cp -r skills/typescript/* .agent/skills/
 cp -r skills/react/* .agent/skills/
 cp -r skills/css/* .agent/skills/
@@ -58,6 +60,8 @@ cp -r skills/css/* .agent/skills/
 
 Once installed, skills activate automatically based on context, but depending
 on your agent you can call them manually with `/` or `$`.
+
+For broad review, ask for `clean-code`, for example: "Review this using clean code." The `clean-code` skill routes to every relevant TypeScript, React, and CSS skill.
 
 ## Example
 
