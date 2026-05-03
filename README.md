@@ -47,13 +47,13 @@ bin/install /path/to/your-project
 The installer supports `.codex`, `.agents`, and `.claude` project directories.
 If none exist, it prompts you to choose which one to create.
 
-## Ask your agent
+### Ask your agent
 
 Alternatively, just open up your coding agent (e.g. Codex), and type:
 
     What's the best way to install these skills? https://github.com/gosukiwi/clean-code-react
 
-## Manual
+### Manual
 
 This will depend on the tool that you have but you can always just copy the
 skills into `.codex/skills`, `.agents/skills`, or `.claude/skills`. It can be
