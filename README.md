@@ -111,22 +111,31 @@ type User = {
   email: string;
 };
 
-type UserPanelProps = {
-  user: User;
-  showAdminActions?: boolean;
-  variant?: "compact" | "full";
-};
+type UserPanelProps =
+  | { status: "loading" }
+  | { status: "error"; errorMessage: string }
+  | {
+      status: "ready";
+      user: User;
+      showAdminActions?: boolean;
+      variant?: "compact" | "full";
+    };
 
-function UserPanel({
-  user,
-  showAdminActions = false,
-  variant = "full",
-}: UserPanelProps) {
+function UserPanel(props: UserPanelProps) {
+  if (props.status === "loading") {
+    return <section aria-live="polite">Loading user...</section>;
+  }
+
+  if (props.status === "error") {
+    return <section role="alert">{props.errorMessage}</section>;
+  }
+
+  const { user, showAdminActions = false, variant = "full" } = props;
   const fullName = `${user.firstName} ${user.lastName}`;
 
   return (
-    <section aria-labelledby="user-panel-title">
-      <h2 id="user-panel-title">{fullName}</h2>
+    <section>
+      <h2>{fullName}</h2>
       {variant === "full" ? <p>{user.email}</p> : null}
       {showAdminActions ? <UserAdminActions user={user} /> : null}
     </section>
@@ -137,6 +146,7 @@ function UserPanel({
 What improved:
 
 - Public props are explicitly typed.
+- Loading, error, and ready states are explicit.
 - Derived state moved out of `useEffect`.
 - Names describe the domain.
 - Rendering modes are explicit.
