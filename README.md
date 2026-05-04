@@ -13,6 +13,8 @@ maintainable styling.
 | Track | Skill | Description | Rules |
 |-------|-------|-------------|-------|
 | All | `clean-code` | Top-level router for clean-code review across TypeScript, React, and CSS | Routes to relevant skills |
+| Review | `clean-code-reviewer` | Orchestrates full code review with concurrent style and correctness passes | Dispatches style + correctness agents |
+| Review | `clean-code-reviewer-correctness` | Functional review for bugs, security, performance, and test coverage gaps | Correctness, Security, Performance, Test Coverage |
 | TypeScript | `clean-as-you-go` | Orchestrator for small cleanup while editing existing TypeScript | Coordinates TypeScript skills |
 | TypeScript | `clean-typescript` | Master TypeScript index and review guide | A1-A5, C1-C5, E1-E2, EH1-EH4, F1-F7, G1-G5, M1-M6, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
 | TypeScript | `clean-typescript-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
@@ -65,6 +67,7 @@ project-level or user-level.
 # Project-level
 mkdir -p .codex/skills
 cp -r skills/clean-code .codex/skills/
+cp -r skills/clean-code-reviewer* .codex/skills/
 cp -r skills/typescript/* .codex/skills/
 cp -r skills/react/* .codex/skills/
 cp -r skills/css/* .codex/skills/
@@ -75,9 +78,12 @@ cp -r skills/css/* .codex/skills/
 Once installed, skills activate automatically based on context, but depending
 on your agent you can call them manually with `/` or `$`.
 
-For broad review, ask for `clean-code`, for example: "Review this using clean
-code." The `clean-code` skill routes to every relevant TypeScript, React, and
-CSS skill.
+For broad review, ask for `clean-code-reviewer`, for example: "Review my
+changes." The reviewer inspects the diff, selects relevant skills, and runs
+concurrent style and correctness passes.
+
+For style-only review, ask for `clean-code`. The `clean-code` skill routes to
+every relevant TypeScript, React, and CSS skill.
 
 ## Example
 

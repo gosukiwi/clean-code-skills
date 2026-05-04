@@ -172,6 +172,11 @@ install_collection() {
 
   install_skill "$repo_root/skills/clean-code" "$skills_dir"
 
+  for source_dir in "$repo_root"/skills/clean-code-reviewer*; do
+    [[ -d "$source_dir" ]] || continue
+    install_skill "$source_dir" "$skills_dir"
+  done
+
   for source_dir in "$repo_root"/skills/typescript/* "$repo_root"/skills/react/* "$repo_root"/skills/css/*; do
     [[ -d "$source_dir" ]] || continue
     install_skill "$source_dir" "$skills_dir"
