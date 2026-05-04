@@ -37,6 +37,21 @@ await user.click(screen.getByRole("button", { name: "Invite" }));
 expect(await screen.findByText("Invitation sent")).toBeInTheDocument();
 ```
 
+## Behavior Contracts
+
+Assert what the user can observe or do: visible content, enabled or disabled controls, focus, selected state, expanded state, loading state, error messages, navigation, and other meaningful outcomes.
+
+Do not test styling implementation details unless they are the public contract or the bug is specifically visual. Avoid assertions for CSS classes, `display: grid` vs `display: flex`, exact DOM nesting, spacing values, or layout primitives when the same user behavior remains intact.
+
+```tsx
+// Bad - locks in an incidental layout implementation
+expect(screen.getByTestId("actions")).toHaveStyle({ display: "grid" });
+
+// Good - checks the behavior the layout supports
+expect(screen.getByRole("button", { name: "Save" })).toBeVisible();
+expect(screen.getByRole("button", { name: "Cancel" })).toBeVisible();
+```
+
 ## Async UI
 
 - Use `findBy...` for elements that appear asynchronously.
@@ -75,6 +90,7 @@ Test:
 ## Common Mistakes
 
 - Asserting implementation details like component state, hook calls, or CSS classes without user impact.
+- Locking tests to incidental style choices like grid vs flexbox, exact spacing, or DOM shape.
 - Using snapshots as the primary assertion for interactive UI.
 - Forgetting to await user interactions and async assertions.
 - Testing child components again in every parent test instead of checking integration behavior.

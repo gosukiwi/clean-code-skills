@@ -18,7 +18,7 @@ Use this with `clean-typescript`. React quality comes from small components, exp
 - R7: Separate server/cache state from local UI state.
 - R8: Custom hooks own reusable stateful behavior, not arbitrary helper code.
 - R9: Event handlers should describe user intent and keep mutation paths obvious.
-- R10: Tests should assert user-visible behavior, accessibility, and state transitions.
+- R10: Tests should assert user-visible behavior, accessibility, and state transitions, not incidental styling details.
 - R11: Organize files by dependency ownership; keep private dependencies with their owner and shared dependencies in the nearest `common/`.
 - R12: Model mutually exclusive component modes with discriminated union props.
 - R13: Render explicit loading, error, empty, and success states for remote or nullable data.
@@ -47,7 +47,7 @@ Use this with `clean-typescript`. React quality comes from small components, exp
 - [ ] Server/cache state is separate from local UI state (R7).
 - [ ] Custom hooks expose a small, stable API for reusable stateful behavior (R8).
 - [ ] Event handlers describe user intent and keep mutation paths obvious (R9).
-- [ ] Tests use accessible queries and real user interactions (R10).
+- [ ] Tests use accessible queries and real user interactions, without locking in incidental styling details (R10).
 - [ ] Files follow dependency ownership, with private dependencies colocated and shared dependencies in nearest `common/` (R11).
 - [ ] Mutually exclusive component modes are represented with discriminated union props, not compatible booleans or optional bags (R12).
 - [ ] Remote or nullable data has explicit loading, error, empty, and success rendering where those states can occur (R13).
