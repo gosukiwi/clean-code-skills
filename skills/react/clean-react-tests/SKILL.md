@@ -1,6 +1,6 @@
 ---
 name: clean-react-tests
-description: Use when writing, fixing, editing, reviewing, or refactoring React tests with Testing Library, user-event, component rendering, accessibility queries, async UI, mocks, or behavior coverage.
+description: Use when writing, fixing, editing, reviewing, or refactoring React tests with Testing Library, user-event, component rendering, accessibility queries, async UI, mocks, brittle fixtures, test data builders, or behavior coverage.
 ---
 
 # Clean React Tests
@@ -47,7 +47,21 @@ expect(await screen.findByText("Invitation sent")).toBeInTheDocument();
 
 - Mock network and browser boundaries, not the component under test.
 - Keep mocks close to the behavior being tested.
-- Prefer realistic data builders over partial objects full of `as` assertions.
+- Keep mocked data realistic; use the Test Data guidance for large fixtures.
+
+## Test Data
+
+Use builders for repeated props, query results, provider state, and domain objects with many required fields. A test should override the fields that matter to the behavior and inherit valid defaults for everything else.
+
+```tsx
+// Bad - fixture noise hides the state being tested
+render(<OrderSummary order={{ id: "1", status: "paid", lineItems: [], discounts: [] }} />);
+
+// Good - the relevant state is the visible part
+render(<OrderSummary order={buildOrder({ status: "paid" })} />);
+```
+
+Keep builders realistic and small. Inline JSX props are fine when every field matters or the object shape is tiny.
 
 ## Coverage
 
@@ -64,3 +78,4 @@ Test:
 - Using snapshots as the primary assertion for interactive UI.
 - Forgetting to await user interactions and async assertions.
 - Testing child components again in every parent test instead of checking integration behavior.
+- Building large inline props or query responses full of irrelevant fields.

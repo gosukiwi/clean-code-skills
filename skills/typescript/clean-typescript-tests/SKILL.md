@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-tests
-description: Use when writing, fixing, editing, or refactoring TypeScript tests, especially slow or flaky tests, skipped or focused tests, happy-path-only coverage, missing boundaries, coverage gaps, or multi-concept tests.
+description: Use when writing, fixing, editing, or refactoring TypeScript tests, especially slow or flaky tests, skipped or focused tests, happy-path-only coverage, missing boundaries, brittle fixtures, coverage gaps, or multi-concept tests.
 ---
 
 # Clean Tests
@@ -146,6 +146,27 @@ test("user creation", async () => {
 });
 ```
 
+## T10: Prefer Test Data Builders
+
+Use test data builders or small factory helpers when setup objects are large, repeated, or full of irrelevant fields. Builders keep tests focused on the one fact that matters and reduce `as` assertions around incomplete fixtures.
+
+```ts
+// Bad - noisy fixture hides the behavior under test
+const order: Order = {
+  id: "order-1",
+  status: "paid",
+  customerId: "customer-1",
+  lineItems: [],
+  discounts: [],
+  createdAt: new Date("2026-01-01"),
+};
+
+// Good - default valid object, test overrides the relevant fact
+const order = buildOrder({ status: "paid" });
+```
+
+Inline literals are fine when the shape is tiny and every field matters to the assertion. Avoid broad builders that hide important setup or create invalid domain objects by default.
+
 ## Test Organization
 
 ### F.I.R.S.T. Principles
@@ -206,4 +227,5 @@ test("user can be activated", () => {
 | T6 | Exhaustively test near bugs |
 | T7 | Look for patterns in failures |
 | T8 | Check coverage when debugging |
-| T9 | Unit tests fast; slower integration tests isolated |
+| T9 | Unit tests fast; slower tests isolated |
+| T10 | Prefer data builders over brittle fixtures |

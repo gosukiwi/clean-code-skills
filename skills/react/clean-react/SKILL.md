@@ -20,6 +20,10 @@ Use this with `clean-typescript`. React quality comes from small components, exp
 - R9: Event handlers should describe user intent and keep mutation paths obvious.
 - R10: Tests should assert user-visible behavior, accessibility, and state transitions.
 - R11: Organize files by dependency ownership; keep private dependencies with their owner and shared dependencies in the nearest `common/`.
+- R12: Model mutually exclusive component modes with discriminated union props.
+- R13: Render explicit loading, error, empty, and success states for remote or nullable data.
+- R14: Keep render pure; side effects belong in event handlers, effects, or boundary code.
+- R15: Prefer realistic test data builders over brittle inline fixtures.
 
 ## Skill Routing
 
@@ -45,3 +49,7 @@ Use this with `clean-typescript`. React quality comes from small components, exp
 - [ ] Event handlers describe user intent and keep mutation paths obvious (R9).
 - [ ] Tests use accessible queries and real user interactions (R10).
 - [ ] Files follow dependency ownership, with private dependencies colocated and shared dependencies in nearest `common/` (R11).
+- [ ] Mutually exclusive component modes are represented with discriminated union props, not compatible booleans or optional bags (R12).
+- [ ] Remote or nullable data has explicit loading, error, empty, and success rendering where those states can occur (R13).
+- [ ] Render has no mutations, storage writes, navigation, timers, subscriptions, or other side effects (R14).
+- [ ] Tests use realistic builders for repeated props, query data, provider state, or large fixtures (R15).

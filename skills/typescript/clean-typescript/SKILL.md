@@ -24,7 +24,7 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - EH3: Do not swallow failures
 - EH4: Use typed recoverable results only when the project style or domain warrants it
 
-## Functions (F1-F7)
+## Functions (F1-F9)
 - F1: Maximum 3 arguments (use parameter objects/interfaces for more)
 - F2: No output arguments (return values)
 - F3: No flag arguments (split functions)
@@ -32,6 +32,8 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - F5: Reduce nesting with early returns, helper functions, extraction, or refactoring
 - F6: Keep one level of abstraction per function
 - F7: Name and simplify complex conditions
+- F8: Separate commands from queries
+- F9: Keep side effects explicit and isolated
 
 ## General
 - G1: No duplicated knowledge
@@ -47,6 +49,8 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - M4: Keep dependency direction obvious
 - M5: Avoid empty abstractions
 - M6: Separate construction from use
+- M7: Avoid temporal coupling
+- M8: Keep public exports small and intentional
 
 ## Async
 - A1: Isolate async workflows
@@ -73,6 +77,8 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 - OD3: Model impossible states out with discriminated unions
 - OD4: Keep DTOs separate from domain models when external shape differs
 - OD5: Avoid excessive object-chain knowledge
+- OD6: Represent absence explicitly instead of vague `null` failures
+- OD7: Replace repeated conditionals with a domain model, lookup, strategy, or exhaustive union dispatch
 
 ## Skill Routing
 
@@ -103,7 +109,7 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 - N6: No encodings
 - N7: Names describe side effects
 
-## Tests (T1-T9)
+## Tests (T1-T10)
 - T1: Test everything that could break
 - T2: Use coverage tools
 - T3: Don't skip trivial tests
@@ -113,6 +119,7 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 - T7: Look for patterns in failures
 - T8: Check coverage when debugging
 - T9: Unit tests should be fast; isolate slower integration tests
+- T10: Prefer test data builders over brittle inline fixtures
 
 ## Quick Reference Table
 
@@ -127,10 +134,14 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | | F5 | Reduce nesting |
 | | F6 | One abstraction level |
 | | F7 | Name complex conditions |
+| | F8 | Commands change state; queries answer |
+| | F9 | Make side effects explicit |
 | **Modules** | M1 | Declarations near use |
 | | M3 | Cohesive modules |
 | | M5 | No empty abstractions |
 | | M6 | Separate construction from use |
+| | M7 | Avoid required call ordering |
+| | M8 | Keep exports intentional |
 | **Async** | A2 | Explicit ordering |
 | | A3 | Avoid shared mutation across awaits |
 | | A5 | Test race-prone behavior |
@@ -145,10 +156,13 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | | B3 | Hide vendor types |
 | **Objects/Data** | OD3 | Model impossible states out |
 | | OD5 | Avoid object-chain coupling |
+| | OD6 | Explicit absence |
+| | OD7 | No repeated dispatch conditionals |
 | **Names** | N1 | Descriptive names |
 | | N5 | Name length matches scope |
 | **Tests** | T5 | Test boundary conditions |
 | | T9 | Unit tests fast; slower tests isolated |
+| | T10 | Use data builders for fixtures |
 
 ## Anti-Patterns (Don't -> Do)
 
@@ -163,13 +177,17 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | One type for API payload and domain model | Boundary DTO plus domain type |
 | Magic number `86400` | `const SECONDS_PER_DAY = 86400` |
 | `process(data, true)` | `processVerbose(data)` |
+| `getUser()` that also creates or saves | `getOrCreateUser()` or split query from command |
 | Deep nesting | Guard clauses, early returns |
 | `const value` at top but used far below | Declare it next to the code that uses it |
 | `if (!(a || b) || !c)` | Extract a named predicate or simplify with De Morgan's laws |
 | One-line wrapper with no rule or boundary | Inline it or give it real responsibility |
 | `new SdkClient(process.env.KEY)` inside domain behavior | Construct at the edge and pass a dependency in |
+| `client.init(); client.load(); client.run()` | Return a ready-to-use object or model state transitions explicitly |
 | `forEach(async () => ...)` | `await Promise.all(...)` or use sequential `for...of` |
 | Reaching through `obj.a.b.c.value` | Ask the owner object for the value |
+| `null` for any parse, lookup, or permission failure | Use an explicit absence, result, or exception path |
+| Same `switch` copied across files | Centralize dispatch in a model, map, strategy, or exhaustive union handler |
 | 100+ line function | Split by responsibility |
 
 ## AI Behavior

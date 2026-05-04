@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-objects-data
-description: Use when writing, fixing, editing, or reviewing TypeScript data models, DTOs, discriminated unions, classes, object boundaries, optional fields, impossible states, or object-chain access.
+description: Use when writing, fixing, editing, or reviewing TypeScript data models, DTOs, discriminated unions, classes, object boundaries, optional fields, null or undefined absence, repeated conditionals, impossible states, or object-chain access.
 ---
 
 # Clean Objects And Data
@@ -88,9 +88,45 @@ const outputDir = context.getScratchDir();
 
 Do not count dots mechanically. Optional chaining through API response data can be fine; coupling to another object's internals is the problem.
 
+## Represent Absence Explicitly
+
+Use `null` or `undefined` only when absence is an expected domain value and the caller can handle it plainly. Do not use `null` as a vague failure channel for parse errors, permission failures, missing configuration, or invalid state.
+
+```ts
+// Bad - caller cannot tell why there is no user
+function findUser(id: string): User | null {
+  // ...
+}
+
+// Good - absence is the domain concept
+function findUser(id: string): User | undefined {
+  // ...
+}
+```
+
+For recoverable failures, use the project's established result style or throw an error with context.
+
+## Replace Repeated Conditionals
+
+If the same `switch`, mode check, or type conditional appears in multiple places, the design knowledge is duplicated. Centralize it in a domain operation, lookup table, strategy, or exhaustive discriminated-union dispatch.
+
+```ts
+// Bad - the same status branching spreads through the codebase
+if (invoice.status === "paid") {
+  // ...
+}
+
+// Good - one owner expresses the policy
+if (canSendReceipt(invoice)) {
+  // ...
+}
+```
+
 ## Common Mistakes
 
 - Using one type for API payloads, forms, database rows, and domain objects.
 - Adding optional fields instead of creating a new variant.
 - Using classes with no invariants, state, or polymorphic behavior.
 - Letting callers reach through nested objects instead of exposing the needed operation.
+- Returning `null` for several unrelated failure cases.
+- Copying the same status/type conditional into multiple modules.

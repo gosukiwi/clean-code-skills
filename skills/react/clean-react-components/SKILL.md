@@ -1,6 +1,6 @@
 ---
 name: clean-react-components
-description: Use when writing, fixing, editing, reviewing, or refactoring React components, JSX, props, conditional rendering, component boundaries, or component composition.
+description: Use when writing, fixing, editing, reviewing, or refactoring React components, JSX, props, discriminated union props, conditional rendering, loading/error/empty states, render purity, component boundaries, or component composition.
 ---
 
 # Clean Components
@@ -33,6 +33,23 @@ If a component fetches data, transforms it, manages several UI modes, and render
 - Avoid passing large objects when the component needs only a few fields, unless the object itself is the domain concept.
 - Avoid boolean prop combinations that create unrelated modes.
 
+When modes are mutually exclusive, model props as a discriminated union so invalid combinations cannot be rendered.
+
+```tsx
+// Bad - caller can pass contradictory props
+type BannerProps = {
+  isLoading?: boolean;
+  error?: Error;
+  message?: string;
+};
+
+// Good - each mode owns the props it needs
+type BannerProps =
+  | { status: "loading" }
+  | { status: "error"; error: Error }
+  | { status: "ready"; message: string };
+```
+
 ## Composition Over Flags
 
 ```tsx
@@ -52,6 +69,7 @@ Boolean props are fine for simple visual toggles. They are a smell when combinat
 - Prefer guard clauses for empty, loading, and error states.
 - Keep nested ternaries out of JSX.
 - Extract named render sections only when the name adds meaning.
+- Render explicit loading, error, empty, and success states when remote or nullable data can be in those states.
 
 ```tsx
 if (status === "loading") {
@@ -65,9 +83,15 @@ if (status === "error") {
 return <OrderDetails order={order} />;
 ```
 
+## Render Purity
+
+Rendering should only calculate UI. Do not mutate data, write storage, start timers, subscribe, navigate, log analytics, or trigger network work during render. Put effects in event handlers, `useEffect`, data-fetching boundaries, or framework loaders/actions.
+
 ## Common Mistakes
 
 - Creating a `components/` dumping ground with no domain ownership.
 - Extracting one-line components that hide simple JSX.
 - Passing `className` through every layer instead of creating clear layout boundaries.
 - Memoizing components before measuring a real render problem.
+- Mutating arrays or objects while preparing JSX.
+- Calling navigation, storage, analytics, or request code during render.

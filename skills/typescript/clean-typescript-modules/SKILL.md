@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-modules
-description: Use when writing, fixing, editing, or reviewing TypeScript modules, classes, file structure, declaration order, vertical formatting, dependency direction, cohesion, coupling, dependency construction, wiring, or over-abstraction.
+description: Use when writing, fixing, editing, or reviewing TypeScript modules, classes, file structure, declaration order, vertical formatting, dependency direction, cohesion, coupling, dependency construction, temporal coupling, public exports, wiring, or over-abstraction.
 ---
 
 # Clean TypeScript Modules
@@ -136,3 +136,33 @@ async function sendReceipt(order: Order, payments: Payments, emailer: Emailer) {
 ```
 
 Do not add dependency injection ceremony for simple values or harmless local objects. This rule matters most when construction touches I/O, config, time, randomness, vendor SDKs, persistence, or anything that makes behavior hard to test or change.
+
+## M7: Avoid Temporal Coupling
+
+Avoid APIs that require callers to remember a hidden sequence such as `init()`, then `load()`, then `run()`. Return ready-to-use objects from factories, or model the states explicitly so invalid order is unrepresentable.
+
+```ts
+// Bad - caller must know the required order
+const importer = new Importer();
+await importer.connect();
+await importer.loadSchema();
+await importer.run(file);
+
+// Good - setup returns the usable dependency
+const importer = await createImporter(config);
+await importer.run(file);
+```
+
+## M8: Keep Public Exports Small And Intentional
+
+Every export becomes part of the module's design surface. Export the operation, type, or component callers are meant to use; keep private helpers private until another owner has a real need for them.
+
+```ts
+// Bad - implementation details become dependencies
+export function normalizeLineItem() {}
+export function calculateSubtotal() {}
+export function applyInvoiceDiscounts() {}
+
+// Good - one intentional public operation
+export function calculateInvoiceTotal() {}
+```

@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-functions
-description: Use when writing, fixing, editing, or refactoring TypeScript functions with too many parameters, boolean flags, parameter mutation, deep nesting, mixed abstraction levels, complex conditionals, dead helpers, unused exports, or unclear call sites.
+description: Use when writing, fixing, editing, or refactoring TypeScript functions with too many parameters, boolean flags, parameter mutation, deep nesting, mixed abstraction levels, complex conditionals, hidden side effects, dead helpers, unused exports, or unclear call sites.
 ---
 
 # Clean Functions
@@ -175,3 +175,36 @@ function canManageAccount(user: User, account: Account): boolean {
 ```
 
 Prefer positive condition names such as `canManageAccount` or `isEligibleForRetry`. Avoid names like `isNotInvalid` unless the domain already uses that wording.
+
+## F8: Separate Commands From Queries
+
+A function should usually either answer a question or change state, not both. If a read also creates, saves, logs, caches, navigates, or mutates, make that behavior explicit in the name or split the operation.
+
+```ts
+// Bad - a getter changes storage
+function getSession(userId: string): Session {
+  return sessions.get(userId) ?? createSession(userId);
+}
+
+// Good - side effect is explicit
+function getOrCreateSession(userId: string): Session {
+  return sessions.get(userId) ?? createSession(userId);
+}
+```
+
+## F9: Keep Side Effects Explicit And Isolated
+
+Prefer pure transforms for domain calculations. When a function must touch I/O, time, randomness, storage, navigation, logging, global state, or mutation, keep that effect near a boundary or make it obvious at the call site.
+
+```ts
+// Bad - calculation secretly writes
+function calculateInvoiceTotal(invoice: Invoice): Money {
+  auditLog.write("invoice-total-calculated");
+  return sumInvoiceLines(invoice.lines);
+}
+
+// Good - pure calculation, explicit effect
+function calculateInvoiceTotal(invoice: Invoice): Money {
+  return sumInvoiceLines(invoice.lines);
+}
+```
