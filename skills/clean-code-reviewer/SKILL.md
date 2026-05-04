@@ -63,7 +63,9 @@ Load `clean-code-reviewer-correctness`. Apply it to the full diff. This pass rev
 
 ## Merging Results
 
-Combine findings from both passes into a single report. Deduplicate if both passes flag the same location. Prefer the correctness finding when they overlap, since functional bugs outrank style.
+Combine findings from both passes into a single report.
+
+**Deduplication rule:** If the correctness pass flags a code region, suppress any style finding that overlaps the same region. The correctness fix will resolve the style issue — reporting both is noise. Only keep the style finding if it addresses a genuinely independent concern at the same location.
 
 ## Output Format
 
