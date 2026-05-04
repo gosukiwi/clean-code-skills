@@ -107,7 +107,7 @@ Be careful with framework resets, browser normalization, and CSS-in-JS constrain
 
 ## CSS3: Layout Primitives Over Manual Spacing
 
-Use flexbox, grid, `gap`, alignment, and intrinsic sizing before margins, absolute positioning, or magic offsets.
+Use flexbox, `gap`, alignment, and intrinsic sizing before margins, absolute positioning, or magic offsets. Prefer flexbox for layout when possible; reserve grid for cases that truly need two-dimensional row and column control.
 
 ```css
 /* Bad */
