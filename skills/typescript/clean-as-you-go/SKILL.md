@@ -1,6 +1,6 @@
 ---
 name: clean-as-you-go
-description: Use when fixing, editing, changing, or debugging existing TypeScript code alongside a small cleanup opportunity near the touched code.
+description: Use when fixing, editing, changing, or debugging existing TypeScript code and keeping changes small and proportional to what was touched.
 ---
 
 # The Boy Scout Rule

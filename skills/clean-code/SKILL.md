@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: Use when writing, fixing, editing, or refactoring TypeScript, React, or CSS code and wanting to apply clean code standards. Not for PR or diff reviews — use clean-code-reviewer for those.
+description: Use when writing, fixing, editing, or refactoring TypeScript, React, or CSS code. Not for PR or diff reviews — use clean-code-reviewer for those.
 ---
 
 # Clean Code: Collection Router
