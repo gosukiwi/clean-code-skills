@@ -16,7 +16,7 @@ maintainable styling.
 | Review | `clean-code-reviewer` | Orchestrates full code review with concurrent style and correctness passes | Dispatches style + correctness agents |
 | Review | `clean-code-reviewer-correctness` | Functional review for bugs, security, performance, and test coverage gaps | Correctness, Security, Performance, Test Coverage |
 | TypeScript | `clean-as-you-go` | Orchestrator for small cleanup while editing existing TypeScript | Coordinates TypeScript skills |
-| TypeScript | `clean-typescript` | Master TypeScript index and review guide | A1-A5, C1-C5, E1-E2, EH1-EH4, F1-F7, G1-G5, M1-M6, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T9 |
+| TypeScript | `clean-typescript` | Master TypeScript index and review guide | A1-A5, C1-C5, E1-E2, EH1-EH4, F1-F7, G1-G5, M1-M6, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T11 |
 | TypeScript | `clean-typescript-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
 | TypeScript | `clean-typescript-functions` | Focused functions with clear call sites | F1-F7 |
 | TypeScript | `clean-typescript-modules` | Cohesive files, classes, declaration locality, dependency construction, and useful abstractions | M1-M6 |
@@ -26,7 +26,7 @@ maintainable styling.
 | TypeScript | `clean-typescript-objects-data` | DTOs, domain models, discriminated unions, and object boundaries | OD1-OD5 |
 | TypeScript | `clean-typescript-general` | Duplication, intent, magic values, single responsibility, and dead code | G1-G5 |
 | TypeScript | `clean-typescript-names` | Descriptive and unambiguous names | N1-N7 |
-| TypeScript | `clean-typescript-tests` | Fast, boundary-aware TypeScript tests | T1-T9 |
+| TypeScript | `clean-typescript-tests` | Fast, boundary-aware TypeScript tests | T1-T11 |
 | React | `clean-react` | Master React index and review guide | R1-R11 |
 | React | `clean-react-components` | Component boundaries, props, JSX, and composition | R1-R3 |
 | React | `clean-react-hooks` | Effects, dependencies, custom hooks, refs, and memoization | R4, R8 |
@@ -263,7 +263,7 @@ What improved:
 | TS2 | Prefer literal unions, discriminated unions, or const objects for closed sets |
 | TS3 | Type public interfaces and avoid `any` at boundaries |
 
-### Tests (T1-T9)
+### Tests (T1-T11)
 
 | Rule | Principle |
 |------|-----------|
@@ -276,6 +276,8 @@ What improved:
 | T7 | Look for patterns in failures |
 | T8 | Let coverage gaps reveal design issues |
 | T9 | Keep unit tests fast and isolate slower integration tests |
+| T10 | Prefer data builders over brittle fixtures |
+| T11 | Test behavior contracts, not incidental implementation details |
 
 ### React (R1-R11)
 
@@ -290,7 +292,7 @@ What improved:
 | R7 | Separate server state from local UI state |
 | R8 | Custom hooks own reusable stateful behavior |
 | R9 | Event handlers should describe user intent |
-| R10 | React tests should assert user-visible behavior |
+| R10 | React tests should assert user-visible behavior, not incidental styling details |
 | R11 | Organize files by dependency ownership |
 
 ### CSS (CSS1-CSS8)

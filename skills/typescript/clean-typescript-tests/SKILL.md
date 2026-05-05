@@ -167,6 +167,12 @@ const order = buildOrder({ status: "paid" });
 
 Inline literals are fine when the shape is tiny and every field matters to the assertion. Avoid broad builders that hide important setup or create invalid domain objects by default.
 
+## T11: Test Behavior Contracts, Not Incidental Implementation
+
+Tests should fail when behavior breaks, not when harmless implementation choices change. Assert public outputs, state transitions, side effects at boundaries, interactions, and other observable outcomes. Avoid tests that only lock in private helper calls, intermediate data shape, algorithm steps, ordering of internal operations, or other details that can change without changing the contract.
+
+Implementation-detail assertions are appropriate only when the detail is the contract, protects against a real bug, or covers a boundary where there is no better observable signal.
+
 ## Test Organization
 
 ### F.I.R.S.T. Principles
@@ -229,3 +235,4 @@ test("user can be activated", () => {
 | T8 | Check coverage when debugging |
 | T9 | Unit tests fast; slower tests isolated |
 | T10 | Prefer data builders over brittle fixtures |
+| T11 | Test behavior contracts, not incidental implementation |

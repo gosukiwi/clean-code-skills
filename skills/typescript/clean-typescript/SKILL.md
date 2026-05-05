@@ -109,7 +109,7 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 - N6: No encodings
 - N7: Names describe side effects
 
-## Tests (T1-T10)
+## Tests (T1-T11)
 - T1: Test everything that could break
 - T2: Use coverage tools
 - T3: Don't skip trivial tests
@@ -120,6 +120,7 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 - T8: Check coverage when debugging
 - T9: Unit tests should be fast; isolate slower integration tests
 - T10: Prefer test data builders over brittle inline fixtures
+- T11: Test behavior contracts, not incidental implementation details
 
 ## Quick Reference Table
 
@@ -163,6 +164,7 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 | **Tests** | T5 | Test boundary conditions |
 | | T9 | Unit tests fast; slower tests isolated |
 | | T10 | Use data builders for fixtures |
+| | T11 | Test behavior contracts |
 
 ## Anti-Patterns (Don't -> Do)
 
