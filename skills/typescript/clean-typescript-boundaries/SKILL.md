@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-boundaries
-description: Use when writing, fixing, editing, or reviewing TypeScript code that touches APIs, JSON, environment variables, storage, databases, browser APIs, SDKs, generated clients, or other external boundaries.
+description: Use when writing, fixing, or editing TypeScript code that touches APIs, JSON, environment variables, storage, databases, browser APIs, SDKs, generated clients, or other external boundaries.
 ---
 
 # Clean Boundaries

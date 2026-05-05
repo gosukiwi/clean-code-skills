@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: Use when writing, fixing, editing, reviewing, or refactoring code with clean code expectations across TypeScript, React, CSS, tests, names, functions, modules, async flows, comments, boundaries, state, components, hooks, layout, or styling.
+description: Use when writing, fixing, editing, or refactoring TypeScript, React, or CSS code and wanting to apply clean code standards. Not for PR or diff reviews — use clean-code-reviewer for those.
 ---
 
 # Clean Code: Collection Router
@@ -16,32 +16,6 @@ Use this as the top-level entry point for the clean-code skill collection. It sh
 | CSS, CSS Modules, CSS-in-JS, Tailwind classes, inline styles, tokens, layout, visual accessibility | `clean-css` |
 | Small cleanup near existing TypeScript edits | `clean-as-you-go` plus the relevant focused TypeScript skill |
 
-## Review Process
-
-When asked to review using clean code:
-
-1. Inspect the changed files and identify their languages, frameworks, and styling systems.
-2. Load each relevant track skill:
-   - TypeScript files: `clean-typescript`
-   - React files: `clean-react` and `clean-typescript`
-   - Styling changes: `clean-css`
-3. Follow the track skill routing tables for focused skills when a concern is specific.
-4. Report findings by severity with rule IDs from the relevant skill.
-
-## Review Output
-
-Lead with findings. For each finding, include:
-
-```text
-Severity: Block | Fix | Suggest
-Rule: <rule-id>
-Location: path/to/file:line
-Issue: What is wrong and why it matters.
-Suggested fix: Concrete next step.
-```
-
-If there are no findings, say that clearly and note any meaningful residual risk, such as missing tests or unverified visual behavior.
-
 ## Editing Process
 
 When editing code with clean-code expectations:
@@ -55,4 +29,4 @@ When editing code with clean-code expectations:
 
 Do not treat `clean-code` as a replacement for the specialized skills. It is a router.
 
-For broad reviews, include every relevant track instead of choosing only one. For example, a `.tsx` component with CSS Modules should use `clean-typescript`, `clean-react`, and `clean-css`.
+For broad edits, include every relevant track instead of choosing only one. For example, a `.tsx` component with CSS Modules should use `clean-typescript`, `clean-react`, and `clean-css`.

@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-modules
-description: Use when writing, fixing, editing, or reviewing TypeScript modules, classes, file structure, declaration order, vertical formatting, dependency direction, cohesion, coupling, dependency construction, temporal coupling, public exports, wiring, or over-abstraction.
+description: Use when writing, fixing, or editing TypeScript modules, classes, file structure, declaration order, vertical formatting, dependency direction, cohesion, coupling, dependency construction, temporal coupling, public exports, wiring, or over-abstraction.
 ---
 
 # Clean TypeScript Modules

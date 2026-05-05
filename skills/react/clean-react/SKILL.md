@@ -1,6 +1,6 @@
 ---
 name: clean-react
-description: Use when writing, fixing, editing, reviewing, or refactoring React components, hooks, state, effects, JSX, or React tests in TypeScript projects.
+description: Use when writing, fixing, editing, or refactoring React components, hooks, state, effects, JSX, or React tests in TypeScript projects.
 ---
 
 # Clean React: Index And Review Guide

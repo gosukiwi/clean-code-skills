@@ -1,6 +1,6 @@
 ---
 name: clean-react-hooks
-description: Use when writing, fixing, editing, reviewing, or refactoring React hooks, custom hooks, useEffect, dependency arrays, stale closures, subscriptions, refs, or memoization.
+description: Use when writing, fixing, editing, or refactoring React hooks, custom hooks, useEffect, dependency arrays, stale closures, subscriptions, refs, or memoization.
 ---
 
 # Clean Hooks

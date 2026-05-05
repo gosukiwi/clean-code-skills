@@ -1,6 +1,6 @@
 ---
 name: clean-typescript
-description: Use when writing, fixing, editing, reviewing, or refactoring TypeScript code, especially weak types, unclear names, duplicated logic, oversized functions, stale comments, boundary gaps, error handling, data modeling, async flows, module structure, or brittle tests.
+description: Use when writing, fixing, editing, or refactoring TypeScript code, especially weak types, unclear names, duplicated logic, oversized functions, stale comments, boundary gaps, error handling, data modeling, async flows, module structure, or brittle tests.
 ---
 
 # Clean TypeScript: Index And Review Guide

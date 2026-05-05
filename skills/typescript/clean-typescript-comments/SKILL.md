@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-comments
-description: Use when writing, fixing, editing, or reviewing TypeScript comments or TSDoc, especially commented-out code, stale docs, metadata comments, redundant comments, TODO banners, or unclear comment value.
+description: Use when writing, fixing, or editing TypeScript comments or TSDoc, especially commented-out code, stale docs, metadata comments, redundant comments, TODO banners, or unclear comment value.
 ---
 
 # Clean Comments

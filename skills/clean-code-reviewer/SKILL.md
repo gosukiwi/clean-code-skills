@@ -81,18 +81,28 @@ Combine findings from both passes into a single report.
 ## Verdict
 
 [Approve | Approve with suggestions | Request changes]
-[One-sentence summary of the most important finding, or confirmation that the change looks good]
+[One-sentence summary referencing finding codes, e.g. "Request changes — [S1] is a security hole; [C2] will break existing callers."]
 ```
 
-Each finding uses this format:
+Each finding uses this format, with its code as the leading identifier:
 
 ```text
-Severity: Block | Fix | Suggest
-Category: Style (rule-id) | Correctness | Security | Performance | Test Coverage
+[S1] Severity: Block | Fix | Suggest
+Category: Style (rule-id)
 Location: path/to/file:line
 Issue: What is wrong and why it matters.
-Suggested fix: Concrete next step.
+Fix: Concrete next step.
 ```
+
+```text
+[C1] Severity: Block | Fix | Suggest
+Category: Correctness | Security | Performance | Test Coverage
+Location: path/to/file:line
+Issue: What is wrong and why it matters.
+Fix: Concrete next step.
+```
+
+Style findings are numbered [S1], [S2], … in order of severity. Correctness findings are numbered [C1], [C2], … in order of severity. Numbers are assigned after merging so the user can reference any finding by code (e.g. "fix S2 and C1").
 
 ## Severity Definitions
 
@@ -106,6 +116,12 @@ Suggested fix: Concrete next step.
 - Any **Fix** finding → Request changes
 - Only **Suggest** findings → Approve with suggestions
 - No findings → Approve
+
+After the verdict, always close with:
+
+> Reply with the codes you want fixed (e.g. `fix S1 C2`), `all` to address everything, or `blocks` to fix only Block findings.
+
+If there are no findings, omit this prompt.
 
 ## AI Behavior
 

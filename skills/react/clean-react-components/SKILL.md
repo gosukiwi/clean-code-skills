@@ -1,6 +1,6 @@
 ---
 name: clean-react-components
-description: Use when writing, fixing, editing, reviewing, or refactoring React components, JSX, props, discriminated union props, conditional rendering, loading/error/empty states, render purity, component boundaries, or component composition.
+description: Use when writing, fixing, editing, or refactoring React components, JSX, props, discriminated union props, conditional rendering, loading/error/empty states, render purity, component boundaries, or component composition.
 ---
 
 # Clean Components

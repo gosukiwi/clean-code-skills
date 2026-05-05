@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-error-handling
-description: Use when writing, fixing, editing, or reviewing TypeScript error handling, catch blocks, thrown values, null failures, swallowed errors, retries, fallbacks, or Result-style APIs.
+description: Use when writing, fixing, or editing TypeScript error handling, catch blocks, thrown values, null failures, swallowed errors, retries, fallbacks, or Result-style APIs.
 ---
 
 # Clean Error Handling

@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-async
-description: Use when writing, fixing, editing, or reviewing TypeScript async flows, promises, retries, timeouts, cancellation, shared mutable state across awaits, race conditions, or flaky async tests.
+description: Use when writing, fixing, or editing TypeScript async flows, promises, retries, timeouts, cancellation, shared mutable state across awaits, race conditions, or flaky async tests.
 ---
 
 # Clean Async TypeScript

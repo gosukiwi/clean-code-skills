@@ -1,6 +1,6 @@
 ---
 name: clean-react-tests
-description: Use when writing, fixing, editing, reviewing, or refactoring React tests with Testing Library, user-event, component rendering, accessibility queries, async UI, mocks, brittle fixtures, test data builders, or behavior coverage.
+description: Use when writing, fixing, editing, or refactoring React tests with Testing Library, user-event, component rendering, accessibility queries, async UI, mocks, brittle fixtures, test data builders, or behavior coverage.
 ---
 
 # Clean React Tests

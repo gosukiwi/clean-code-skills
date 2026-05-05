@@ -1,6 +1,6 @@
 ---
 name: clean-react-state
-description: Use when writing, fixing, editing, reviewing, or refactoring React state, derived state, reducers, context, server state, loading/error/empty states, form state, or state ownership.
+description: Use when writing, fixing, editing, or refactoring React state, derived state, reducers, context, server state, loading/error/empty states, form state, or state ownership.
 ---
 
 # Clean State

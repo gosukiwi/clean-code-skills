@@ -1,6 +1,6 @@
 ---
 name: clean-css
-description: Use when writing, fixing, editing, reviewing, or refactoring CSS, CSS Modules, CSS-in-JS, styled-components, StyleX, Tailwind class usage, inline style props, design tokens, layout, visual accessibility, or responsive UI styling.
+description: Use when writing, fixing, editing, or refactoring CSS, CSS Modules, CSS-in-JS, styled-components, StyleX, Tailwind class usage, inline style props, design tokens, layout, visual accessibility, or responsive UI styling.
 ---
 
 # Clean CSS: Index And Review Guide

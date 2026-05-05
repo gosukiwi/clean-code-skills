@@ -1,6 +1,6 @@
 ---
 name: clean-react-file-organization
-description: Use when creating, moving, splitting, or reviewing React files, owner folders, component folders, hooks, presenters, utils, CSS modules, common folders, or shared/private dependencies.
+description: Use when creating, moving, or splitting React files, owner folders, component folders, hooks, presenters, utils, CSS modules, common folders, or shared/private dependencies.
 ---
 
 # Clean File Organization

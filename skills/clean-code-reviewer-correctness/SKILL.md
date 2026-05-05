@@ -1,6 +1,6 @@
 ---
 name: clean-code-reviewer-correctness
-description: Use when reviewing code for functional correctness, backwards compatibility, logic errors, security vulnerabilities, performance issues, or missing test coverage — not style.
+description: Use when checking code for functional correctness, backwards compatibility, logic errors, security vulnerabilities, performance issues, or missing test coverage — not style.
 ---
 
 # Clean Code Reviewer: Correctness

@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-general
-description: Use when writing, fixing, editing, or reviewing TypeScript with duplicated logic, magic values, unclear one-liners, mixed responsibilities, clutter, arbitrary code, or inconsistent abstraction levels.
+description: Use when writing, fixing, or editing TypeScript with duplicated logic, magic values, unclear one-liners, mixed responsibilities, clutter, arbitrary code, or inconsistent abstraction levels.
 ---
 
 # General Clean Code Principles

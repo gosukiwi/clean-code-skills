@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-names
-description: Use when naming, renaming, or reviewing TypeScript identifiers, especially cryptic names, ambiguous parameters, I-prefixed interfaces, Hungarian notation, misleading side effects, or requests for clearer names.
+description: Use when naming or renaming TypeScript identifiers, especially cryptic names, ambiguous parameters, I-prefixed interfaces, Hungarian notation, misleading side effects, or requests for clearer names.
 ---
 
 # Clean Names

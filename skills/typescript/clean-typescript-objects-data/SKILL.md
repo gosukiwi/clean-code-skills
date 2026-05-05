@@ -1,6 +1,6 @@
 ---
 name: clean-typescript-objects-data
-description: Use when writing, fixing, editing, or reviewing TypeScript data models, DTOs, discriminated unions, classes, object boundaries, optional fields, null or undefined absence, repeated conditionals, impossible states, or object-chain access.
+description: Use when writing, fixing, or editing TypeScript data models, DTOs, discriminated unions, classes, object boundaries, optional fields, null or undefined absence, repeated conditionals, impossible states, or object-chain access.
 ---
 
 # Clean Objects And Data
