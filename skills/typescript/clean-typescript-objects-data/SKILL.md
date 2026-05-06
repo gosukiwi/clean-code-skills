@@ -7,7 +7,7 @@ description: Use when writing, fixing, or editing TypeScript data models, DTOs, 
 
 Choose the shape that matches the job. Plain data is best for transfer, rendering, serialization, and pattern matching. Objects or classes are useful when behavior and invariants belong together.
 
-## Plain Data Versus Behavior
+## OD1–OD2: Plain Data Versus Behavior
 
 ```ts
 // Good - behavior belongs with the object
@@ -25,7 +25,7 @@ class SalariedEmployee implements Employee {
 
 Use classes or objects with methods when they protect invariants or enable true polymorphism. Prefer plain data when values are mostly read, rendered, serialized, or passed across boundaries.
 
-## Model Impossible States Out
+## OD3: Model Impossible States Out
 
 Avoid bags of optional fields that can contradict each other.
 
@@ -44,7 +44,7 @@ type Employee =
   | { type: "HOURLY"; hours: number; rate: number };
 ```
 
-## Exhaustive Dispatch
+### Exhaustive Dispatch
 
 When dispatching on a discriminated union, make exhaustiveness compiler-enforced. Always include a `never` case that throws so adding a new union member breaks compilation until every dispatch site handles it.
 
@@ -72,11 +72,11 @@ function assertNever(value: never): never {
 }
 ```
 
-## DTOs Versus Domain Models
+## OD4: DTOs Versus Domain Models
 
 Keep external DTOs separate from domain models when names, nullability, units, or invariants differ. Convert at the boundary, then use domain types internally.
 
-## Avoid Excessive Object-Chain Knowledge
+## OD5: Avoid Excessive Object-Chain Knowledge
 
 ```ts
 // Bad - reaching through another object's internals
@@ -88,7 +88,7 @@ const outputDir = context.getScratchDir();
 
 Do not count dots mechanically. Optional chaining through API response data can be fine; coupling to another object's internals is the problem.
 
-## Represent Absence Explicitly
+## OD6: Represent Absence Explicitly
 
 Use `null` or `undefined` only when absence is an expected domain value and the caller can handle it plainly. Do not use `null` as a vague failure channel for parse errors, permission failures, missing configuration, or invalid state.
 
@@ -106,7 +106,7 @@ function findUser(id: string): User | undefined {
 
 For recoverable failures, use the project's established result style or throw an error with context.
 
-## Replace Repeated Conditionals
+## OD7: Replace Repeated Conditionals
 
 If the same `switch`, mode check, or type conditional appears in multiple places, the design knowledge is duplicated. Centralize it in a domain operation, lookup table, strategy, or exhaustive discriminated-union dispatch.
 

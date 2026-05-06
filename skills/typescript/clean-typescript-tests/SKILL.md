@@ -221,18 +221,3 @@ test("user can be activated", () => {
 });
 ```
 
-## Quick Reference
-
-| Rule | Principle |
-|------|-----------|
-| T1 | Test everything that could break |
-| T2 | Use coverage tools |
-| T3 | Don't skip trivial tests |
-| T4 | Ignored test = ambiguity question |
-| T5 | Test boundary conditions |
-| T6 | Exhaustively test near bugs |
-| T7 | Look for patterns in failures |
-| T8 | Check coverage when debugging |
-| T9 | Unit tests fast; slower tests isolated |
-| T10 | Prefer data builders over brittle fixtures |
-| T11 | Test behavior contracts, not incidental implementation |

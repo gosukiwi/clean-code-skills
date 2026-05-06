@@ -7,7 +7,7 @@ description: Use when writing, fixing, editing, or refactoring React tests with 
 
 React tests should describe what the user can observe and do. Prefer Testing Library queries that match accessible UI and user-event interactions that match real workflows.
 
-## Query Priority
+## R10: Query Priority
 
 Prefer:
 
@@ -64,7 +64,7 @@ expect(screen.getByRole("button", { name: "Cancel" })).toBeVisible();
 - Keep mocks close to the behavior being tested.
 - Keep mocked data realistic; use the Test Data guidance for large fixtures.
 
-## Test Data
+## R15: Test Data
 
 Use builders for repeated props, query results, provider state, and domain objects with many required fields. A test should override the fields that matter to the behavior and inherit valid defaults for everything else.
 

@@ -7,7 +7,7 @@ description: Use when writing, fixing, editing, or refactoring React state, deri
 
 State should have one owner and one source of truth. Store the minimal facts that change over time; derive everything else.
 
-## Local First
+## R6: Local First
 
 Keep state close to where it is used. Lift state only when multiple components need to read or change it.
 
@@ -25,7 +25,7 @@ function DetailsPanel() {
 }
 ```
 
-## Derived State
+## R5: Derived State
 
 Do not store values that can be calculated from props, state, or query data during render.
 
@@ -55,7 +55,7 @@ Avoid reducers that simply proxy `setState` with generic actions like `{ type: "
 - Split read-heavy state from write actions when it prevents unnecessary rerenders.
 - Do not use context as a default replacement for props.
 
-## Server State
+## R7: Server State
 
 Server data, cache lifetime, background refresh, optimistic updates, and request status are not ordinary local UI state. Prefer the project's data-fetching library when one exists.
 

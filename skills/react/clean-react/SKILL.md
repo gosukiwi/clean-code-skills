@@ -7,7 +7,7 @@ description: Use when writing, fixing, editing, or refactoring React components,
 
 Use this with `clean-typescript`. React quality comes from small components, explicit data flow, minimal effects, clear state ownership, ownership-based file organization, and behavior-focused tests.
 
-## Core Rules
+## Core Rules (R1-R15)
 
 - R1: Components should have one reason to change.
 - R2: Prefer composition over boolean prop combinations.
@@ -29,7 +29,7 @@ Use this with `clean-typescript`. React quality comes from small components, exp
 
 | Work | Use |
 |------|-----|
-| Component props, JSX, conditional rendering | `clean-react-components` |
+| Component props, JSX, conditional rendering, event handlers | `clean-react-components` |
 | Effects, dependency arrays, custom hooks | `clean-react-hooks` |
 | Local state, derived state, reducers, server state | `clean-react-state` |
 | React Testing Library tests | `clean-react-tests` |
@@ -53,3 +53,11 @@ Use this with `clean-typescript`. React quality comes from small components, exp
 - [ ] Remote or nullable data has explicit loading, error, empty, and success rendering where those states can occur (R13).
 - [ ] Render has no mutations, storage writes, navigation, timers, subscriptions, or other side effects (R14).
 - [ ] Tests use realistic builders for repeated props, query data, provider state, or large fixtures (R15).
+
+## AI Behavior
+
+When reviewing code, use this skill for the first-pass sweep: identify violations by rule number (e.g., "R4 violation: effect used for derived state").
+
+When writing detailed fixes or explanations for a specific category, invoke the corresponding sub-skill via the Skill tool before proceeding — for example, invoke `clean-react-components` when addressing R1/R2/R3/R9/R12/R13/R14 violations. The sub-skills contain code examples and nuance that this index omits.
+
+When fixing or editing code, report what was fixed (e.g., "Fixed: moved derived value out of state (R5)").

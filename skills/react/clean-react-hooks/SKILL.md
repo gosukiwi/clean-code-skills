@@ -7,7 +7,7 @@ description: Use when writing, fixing, editing, or refactoring React hooks, cust
 
 Hooks should make stateful behavior explicit. Effects are for synchronization with systems outside React, not for deriving ordinary render data.
 
-## Effects
+## R4: Effects
 
 Use `useEffect` for:
 
@@ -37,7 +37,7 @@ const fullName = `${firstName} ${lastName}`;
 - Stabilize callbacks only when identity matters to a child, subscription, or memoized computation.
 - Prefer moving logic inside the effect over hiding dependencies.
 
-## Custom Hooks
+## R8: Custom Hooks
 
 Create a custom hook when behavior is reusable and stateful, or when it gives a complex effect a clear boundary.
 

@@ -7,7 +7,7 @@ description: Use when writing, fixing, or editing TypeScript code that touches A
 
 Boundary code converts uncertain external behavior into explicit internal contracts. Keep unsafe shapes at the edge and pass typed values inward.
 
-## Validate At The Edge
+## B1: Validate At The Edge
 
 External data is `unknown` until validated. Parse and normalize once, then use domain types internally.
 
@@ -26,7 +26,11 @@ function parseUserResponse(responseText: string): User {
 
 Boundary parsers should reject invalid JSON, reject invalid shape, fill intentional defaults, and name the external source in errors.
 
-## Do Not Leak Vendor Types
+## B2: Make Configuration Typed
+
+Read environment variables, feature flags, and storage values once at startup or module boundaries. Convert strings into typed config before the rest of the app uses them.
+
+## B3: Do Not Leak Vendor Types
 
 Wrap awkward SDKs and generated clients behind small adapters when their types or behavior should not shape the whole app.
 
@@ -43,11 +47,7 @@ interface Payments {
 
 Keep vendor-specific fields in the adapter unless the domain truly needs them.
 
-## Make Configuration Typed
-
-Read environment variables, feature flags, and storage values once at startup or module boundaries. Convert strings into typed config before the rest of the app uses them.
-
-## Boundary Tests
+## B4: Boundary Tests
 
 Use focused tests around boundaries that are easy to misunderstand:
 

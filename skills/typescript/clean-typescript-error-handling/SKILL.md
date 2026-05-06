@@ -7,7 +7,7 @@ description: Use when writing, fixing, or editing TypeScript error handling, cat
 
 Error handling is part of the public behavior. Keep normal flow readable, preserve context, and make recoverable failures explicit.
 
-## Throw Useful Errors
+## EH1: Throw Useful Errors
 
 Throw `Error` objects or project-specific subclasses. Do not throw strings or untyped objects.
 
@@ -19,7 +19,7 @@ throw "User not found";
 throw new Error(`User not found: ${userId}`);
 ```
 
-## Catch Unknown
+## EH2: Catch Unknown
 
 Treat caught values as `unknown` and narrow before reading properties.
 
@@ -37,7 +37,7 @@ try {
 }
 ```
 
-## Do Not Swallow Failures
+## EH3: Do Not Swallow Failures
 
 Empty `catch` blocks hide system behavior. Either handle the failure, add context and throw an `Error`, or return a typed recoverable result.
 
@@ -60,7 +60,7 @@ try {
 }
 ```
 
-## Null Is Not an Error Strategy
+## EH4: Null Is Not an Error Strategy
 
 Use `null` or `undefined` only when absence is an expected domain value. For recoverable failures, prefer a typed result when the project already uses that style.
 

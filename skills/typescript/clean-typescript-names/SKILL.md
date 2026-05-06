@@ -142,14 +142,3 @@ function getOrCreateConfig(configPath: string) {
 }
 ```
 
-## Quick Reference
-
-| Rule | Principle | Example |
-|------|-----------|---------|
-| N1 | Descriptive names | `SECONDS_PER_DAY` not `d` |
-| N2 | Right abstraction level | `getUserDirectory()` not `getMapOf...` |
-| N3 | Standard nomenclature | `UserFactory`, `calculateAmortization` |
-| N4 | Unambiguous | `renameFile(oldPath, newPath)` |
-| N5 | Length matches scope | Short for loops, long for globals |
-| N6 | No encodings | `users` not `arrUsers` |
-| N7 | Describe side effects | `getOrCreateConfig()` |

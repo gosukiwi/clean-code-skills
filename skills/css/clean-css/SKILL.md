@@ -19,7 +19,7 @@ Before reviewing or editing styles, identify the local styling approach:
 
 Prefer the project's established tokens and patterns. Do not invent a new token scale or styling abstraction for a narrow change.
 
-## Core Rules
+## Core Rules (CSS1-CSS8)
 
 - CSS1: Use design tokens or existing utilities for repeated design values.
 - CSS2: Keep CSS declarations purposeful; remove defaults, overrides, and no-op properties.

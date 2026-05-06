@@ -14,11 +14,7 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - C4: Write comments well if you must
 - C5: Never commit commented-out code
 
-## Environment (E1-E2)
-- E1: One project-standard command to build (for example, `npm run build`)
-- E2: One project-standard command to test (for example, `npm test`)
-
-## Error Handling
+## Error Handling (EH1-EH4)
 - EH1: Throw `Error` objects with useful context
 - EH2: Catch `unknown` and narrow before reading properties
 - EH3: Do not swallow failures
@@ -35,14 +31,14 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - F8: Separate commands from queries
 - F9: Keep side effects explicit and isolated
 
-## General
+## General (G1-G5)
 - G1: No duplicated knowledge
 - G2: No obscured intent
 - G3: Named constants, not magic values
 - G4: Functions do one thing
 - G5: Delete dead code
 
-## Modules
+## Modules (M1-M8)
 - M1: Keep declarations close to use
 - M2: Order code for top-down reading
 - M3: Keep modules cohesive
@@ -52,7 +48,7 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - M7: Avoid temporal coupling
 - M8: Keep public exports small and intentional
 
-## Async
+## Async (A1-A5)
 - A1: Isolate async workflows
 - A2: Make ordering explicit
 - A3: Avoid shared mutable state across awaits
@@ -60,18 +56,17 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 - A5: Test race-prone behavior
 
 ## TypeScript-Specific (TS1-TS3)
-These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 - TS1: Keep imports explicit and stable; avoid namespace-style overuse and implicit dependencies
 - TS2: Prefer literal unions, discriminated unions, or const objects for closed sets; use enums only when they match project convention
 - TS3: Type public interfaces explicitly; use `unknown` plus narrowing instead of `any` at boundaries
 
-## Boundaries
+## Boundaries (B1-B4)
 - B1: Treat external data as `unknown` until validated
 - B2: Convert API, JSON, env, storage, database, and SDK shapes into internal types at the edge
 - B3: Keep vendor types out of domain code unless they are the domain
 - B4: Test tricky boundary mappings and invalid external shapes
 
-## Objects and Data
+## Objects and Data (OD1-OD7)
 - OD1: Use plain data for transfer, rendering, serialization, and pattern matching
 - OD2: Use objects/classes when behavior and invariants belong together
 - OD3: Model impossible states out with discriminated unions
@@ -122,77 +117,10 @@ These adapt the Java-specific rules (J1-J3) to TypeScript conventions:
 - T10: Prefer test data builders over brittle inline fixtures
 - T11: Test behavior contracts, not incidental implementation details
 
-## Quick Reference Table
-
-| Category | Rule | One-Liner |
-|----------|------|-----------|
-| **Comments** | C1 | No metadata (use Git) |
-| | C3 | No redundant comments |
-| | C5 | No commented-out code |
-| **Functions** | F1 | Max 3 arguments |
-| | F3 | No flag arguments |
-| | F4 | Delete dead functions |
-| | F5 | Reduce nesting |
-| | F6 | One abstraction level |
-| | F7 | Name complex conditions |
-| | F8 | Commands change state; queries answer |
-| | F9 | Make side effects explicit |
-| **Modules** | M1 | Declarations near use |
-| | M3 | Cohesive modules |
-| | M5 | No empty abstractions |
-| | M6 | Separate construction from use |
-| | M7 | Avoid required call ordering |
-| | M8 | Keep exports intentional |
-| **Async** | A2 | Explicit ordering |
-| | A3 | Avoid shared mutation across awaits |
-| | A5 | Test race-prone behavior |
-| **Errors** | EH1 | Throw useful `Error` objects |
-| | EH3 | Do not swallow failures |
-| **General** | G1 | No duplicated knowledge |
-| | G2 | No obscured intent |
-| | G3 | Named constants, not magic values |
-| | G4 | Functions do one thing |
-| | G5 | Delete dead code |
-| **Boundaries** | B1 | Validate external data |
-| | B3 | Hide vendor types |
-| **Objects/Data** | OD3 | Model impossible states out |
-| | OD5 | Avoid object-chain coupling |
-| | OD6 | Explicit absence |
-| | OD7 | No repeated dispatch conditionals |
-| **Names** | N1 | Descriptive names |
-| | N5 | Name length matches scope |
-| **Tests** | T5 | Test boundary conditions |
-| | T9 | Unit tests fast; slower tests isolated |
-| | T10 | Use data builders for fixtures |
-| | T11 | Test behavior contracts |
-
-## Anti-Patterns (Don't -> Do)
-
-| Don't | Do |
-|----------|-------|
-| Comment every line | Delete obvious comments |
-| Helper for one-liner | Inline the code |
-| `import * as utils` everywhere | Named imports for explicit dependencies |
-| `any` in public API | Specific types or `unknown` + narrowing |
-| `value as User` after parsing JSON | Parse, validate, then return `User` |
-| Empty `catch` block | Handle, add context, or throw a contextual `Error` |
-| One type for API payload and domain model | Boundary DTO plus domain type |
-| Magic number `86400` | `const SECONDS_PER_DAY = 86400` |
-| `process(data, true)` | `processVerbose(data)` |
-| `getUser()` that also creates or saves | `getOrCreateUser()` or split query from command |
-| Deep nesting | Guard clauses, early returns |
-| `const value` at top but used far below | Declare it next to the code that uses it |
-| `if (!(a || b) || !c)` | Extract a named predicate or simplify with De Morgan's laws |
-| One-line wrapper with no rule or boundary | Inline it or give it real responsibility |
-| `new SdkClient(process.env.KEY)` inside domain behavior | Construct at the edge and pass a dependency in |
-| `client.init(); client.load(); client.run()` | Return a ready-to-use object or model state transitions explicitly |
-| `forEach(async () => ...)` | `await Promise.all(...)` or use sequential `for...of` |
-| Reaching through `obj.a.b.c.value` | Ask the owner object for the value |
-| `null` for any parse, lookup, or permission failure | Use an explicit absence, result, or exception path |
-| Same `switch` copied across files | Centralize dispatch in a model, map, strategy, or exhaustive union handler |
-| 100+ line function | Split by responsibility |
-
 ## AI Behavior
 
-When reviewing code, identify violations by rule number (e.g., "G1 violation: duplicated logic").
+When reviewing code, use this skill for the first-pass sweep: identify violations by rule number (e.g., "G1 violation: duplicated logic").
+
+When writing detailed fixes or explanations for a specific category, invoke the corresponding sub-skill via the Skill tool before proceeding — for example, invoke `clean-typescript-functions` when addressing F-rule violations. The sub-skills contain code examples and nuance that this index omits.
+
 When fixing or editing code, report what was fixed (e.g., "Fixed: extracted magic value to `SECONDS_PER_DAY` (G3)").

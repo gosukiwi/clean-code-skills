@@ -7,7 +7,7 @@ description: Use when writing, fixing, editing, or refactoring React components,
 
 React components are functions with UI responsibilities. Keep each component focused, make props readable at the call site, and use composition when variants start multiplying.
 
-## Component Boundaries
+## R1: Component Boundaries
 
 A component should usually own one of these jobs:
 
@@ -18,7 +18,7 @@ A component should usually own one of these jobs:
 
 If a component fetches data, transforms it, manages several UI modes, and renders a large tree, split coordination from presentation.
 
-## Props
+## R2, R12: Props
 
 ```tsx
 // Bad - call site meaning is unclear
@@ -64,7 +64,7 @@ type BannerProps =
 
 Boolean props are fine for simple visual toggles. They are a smell when combinations create different components hiding behind one name.
 
-## Conditional Rendering
+## R13: Conditional Rendering
 
 - Prefer guard clauses for empty, loading, and error states.
 - Keep nested ternaries out of JSX.
@@ -83,9 +83,41 @@ if (status === "error") {
 return <OrderDetails order={order} />;
 ```
 
-## Render Purity
+## R14: Render Purity
 
 Rendering should only calculate UI. Do not mutate data, write storage, start timers, subscribe, navigate, log analytics, or trigger network work during render. Put effects in event handlers, `useEffect`, data-fetching boundaries, or framework loaders/actions.
+
+## R9: Event Handlers
+
+Event handlers should name the user action, not the element or mechanism. Keep the mutation path obvious at the call site.
+
+```tsx
+// Bad - names the element, not the intent
+function handleButtonClick() {
+  setItems(items.filter((item) => item.id !== id));
+}
+
+// Good - names what the user did
+function handleRemoveItem(id: string) {
+  setItems((items) => items.filter((item) => item.id !== id));
+}
+```
+
+Avoid embedding complex logic or multiple state updates directly in JSX props. Extract a named handler when the intent would not be clear inline.
+
+```tsx
+// Bad - mutation path is buried in JSX
+<button onClick={() => {
+  setLoading(true);
+  setError(null);
+  submitOrder(cart);
+}}>
+  Place Order
+</button>
+
+// Good - intent is named, path is visible
+<button onClick={handlePlaceOrder}>Place Order</button>
+```
 
 ## Common Mistakes
 
