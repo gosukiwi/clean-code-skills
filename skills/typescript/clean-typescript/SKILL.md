@@ -121,6 +121,6 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 
 When reviewing code, use this skill for the first-pass sweep: identify violations by rule number (e.g., "G1 violation: duplicated logic").
 
-When writing detailed fixes or explanations for a specific category, invoke the corresponding sub-skill via the Skill tool before proceeding — for example, invoke `clean-typescript-functions` when addressing F-rule violations. The sub-skills contain code examples and nuance that this index omits.
+When writing detailed fixes or explanations for a specific category, read the corresponding sub-skill file before proceeding — for example, read `../clean-typescript-functions/SKILL.md` when addressing F-rule violations. If the Skill tool is available, invoke the skill by name instead. The sub-skills contain code examples and nuance that this index omits.
 
 When fixing or editing code, report what was fixed (e.g., "Fixed: extracted magic value to `SECONDS_PER_DAY` (G3)").

@@ -48,14 +48,20 @@ Run two review passes in parallel:
 
 ### Style Pass
 
-Load the relevant clean-code skills based on file classification:
+**Step 1 — Read the index skill(s)** based on file classification:
 
-- TypeScript files → `clean-typescript`
-- React files → `clean-react` and `clean-typescript`
-- CSS/styling changes → `clean-css`
-- Test files → `clean-typescript-tests` or `clean-react-tests`
+| Files | Read |
+|-------|------|
+| `.ts`, `.tsx` (TypeScript) | `../clean-typescript/SKILL.md` |
+| React (JSX / React imports) | `../clean-react/SKILL.md` + `../clean-typescript/SKILL.md` |
+| `.css`, `.module.css`, `.scss`, styled, Tailwind | `../clean-css/SKILL.md` |
+| Test files (`*.test.*`, `*.spec.*`) | `../clean-typescript-tests/SKILL.md` or `../clean-react-tests/SKILL.md` |
 
-Apply the loaded skills to the diff. Report findings with rule IDs from those skills.
+**Step 2 — Read relevant sub-skills.** Scan the diff and identify which rule categories appear. Then read only the sub-skill files that match before writing findings. Do not load all sub-skills — only the ones relevant to what is actually in the diff.
+
+All skills are installed as siblings in the same directory. Reference them as `../clean-typescript-<name>/SKILL.md` for TypeScript sub-skills and `../clean-react-<name>/SKILL.md` for React sub-skills. Use the Skill Routing table in each index to map rule codes to sub-skill names.
+
+**Step 3 — Apply and report.** Apply all loaded skills to the diff. Report findings with rule IDs.
 
 ### Correctness Pass
 

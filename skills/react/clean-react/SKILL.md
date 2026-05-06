@@ -58,6 +58,6 @@ Use this with `clean-typescript`. React quality comes from small components, exp
 
 When reviewing code, use this skill for the first-pass sweep: identify violations by rule number (e.g., "R4 violation: effect used for derived state").
 
-When writing detailed fixes or explanations for a specific category, invoke the corresponding sub-skill via the Skill tool before proceeding — for example, invoke `clean-react-components` when addressing R1/R2/R3/R9/R12/R13/R14 violations. The sub-skills contain code examples and nuance that this index omits.
+When writing detailed fixes or explanations for a specific category, read the corresponding sub-skill file before proceeding — for example, read `../clean-react-components/SKILL.md` when addressing R1/R2/R3/R9/R12/R13/R14 violations. If the Skill tool is available, invoke the skill by name instead. The sub-skills contain code examples and nuance that this index omits.
 
 When fixing or editing code, report what was fixed (e.g., "Fixed: moved derived value out of state (R5)").
