@@ -41,6 +41,9 @@ From the changed file list, classify each file:
 | `.tsx` with React imports or JSX | React + TypeScript |
 | `.css`, `.module.css`, `.scss`, styled templates, Tailwind classes | CSS |
 | Test files (`*.test.*`, `*.spec.*`) | Tests |
+| New or moved `.ts`, `.tsx`, `.jsx`, `.module.css` files | File Organization |
+
+To detect new or moved files, run `git diff --diff-filter=AR` (with the same target used above). If any `.ts`, `.tsx`, `.jsx`, or `.module.css` files appear, add "File Organization" to the tracks for the Style Pass.
 
 ## Dispatch Concurrent Reviews
 
@@ -56,6 +59,7 @@ Run two review passes in parallel:
 | React (JSX / React imports) | `../clean-react/SKILL.md` + `../clean-typescript/SKILL.md` |
 | `.css`, `.module.css`, `.scss`, styled, Tailwind | `../clean-css/SKILL.md` |
 | Test files (`*.test.*`, `*.spec.*`) | `../clean-typescript-tests/SKILL.md` or `../clean-react-tests/SKILL.md` |
+| New/moved `.ts`, `.tsx`, `.jsx`, `.module.css` | `../clean-react-file-organization/SKILL.md` |
 
 **Step 2 — Read relevant sub-skills.** Scan the diff and identify which rule categories appear. Then read only the sub-skill files that match before writing findings. Do not load all sub-skills — only the ones relevant to what is actually in the diff.
 
