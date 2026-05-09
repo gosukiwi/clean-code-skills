@@ -63,7 +63,7 @@ Run two review passes in parallel:
 
 **Step 2 — Read relevant sub-skills.** Scan the diff and identify which rule categories appear. Then read only the sub-skill files that match before writing findings. Do not load all sub-skills — only the ones relevant to what is actually in the diff.
 
-All skills are installed as siblings in the same directory. Reference them as `../clean-typescript-<name>/SKILL.md` for TypeScript sub-skills and `../clean-react-<name>/SKILL.md` for React sub-skills. Use the Skill Routing table in each index to map rule codes to sub-skill names.
+All skills are installed as siblings in the same directory. Reference TypeScript sub-skills with the sibling path pattern `../clean-typescript-{topic}/SKILL.md` and React sub-skills with `../clean-react-{topic}/SKILL.md`. Use the Skill Routing table in each index to map rule codes to sub-skill names.
 
 **Step 3 — Apply and report.** Apply all loaded skills to the diff. Report findings with rule IDs.
 

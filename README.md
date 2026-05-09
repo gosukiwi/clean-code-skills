@@ -41,15 +41,43 @@ targeted guidance.
 
 ## Installation
 
-Skills are designed to be used together. The recommended way to install them
-is with the install script. From this repo, run:
+Skills are designed to be used together. The recommended way to install them is
+with the [skills CLI](https://github.com/vercel-labs/skills):
 
 ```bash
-bin/install /path/to/your-project
+npx skills add gosukiwi/clean-code-react --skill '*'
 ```
 
-The installer supports `.codex`, `.agents`, and `.claude` project directories.
-If none exist, it prompts you to choose which one to create.
+Use `--skill '*'` when you want a non-interactive install of the full
+collection. If you omit it, the CLI may prompt you to choose skills when a
+repository contains more than one.
+
+To install into a specific agent, pass one or more `--agent` values:
+
+```bash
+npx skills add gosukiwi/clean-code-react --skill '*' --agent codex
+npx skills add gosukiwi/clean-code-react --skill '*' --agent claude-code
+```
+
+For local development from a clone of this repo:
+
+```bash
+npx skills add . --skill '*'
+```
+
+### Updating
+
+Use the skills CLI to list, update, or remove installed skills:
+
+```bash
+npx skills list
+npx skills update
+npx skills update clean-code
+npx skills remove clean-code
+```
+
+Restart your agent after installing or updating skills so it reloads the
+changed instructions.
 
 ### Ask your agent
 
@@ -60,17 +88,13 @@ Alternatively, just open up your coding agent (e.g. Codex), and type:
 ### Manual
 
 This will depend on the tool that you have but you can always just copy the
-skills into `.codex/skills`, `.agents/skills`, or `.claude/skills`. It can be
-project-level or user-level.
+skills into your agent's skills directory. Common project-level paths include
+`.agents/skills`, `.claude/skills`, and `.codex/skills`.
 
 ```bash
 # Project-level
 mkdir -p .codex/skills
-cp -r skills/clean-code .codex/skills/
-cp -r skills/clean-code-reviewer* .codex/skills/
-cp -r skills/typescript/* .codex/skills/
-cp -r skills/react/* .codex/skills/
-cp -r skills/css/* .codex/skills/
+cp -r skills/* .codex/skills/
 ```
 
 ## Usage
