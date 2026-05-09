@@ -7,9 +7,21 @@ description: Use when reviewing code, pull requests, branches, diffs, or changed
 
 Orchestrates a full code review by inspecting the diff, selecting relevant skills, and dispatching concurrent review passes for style and correctness.
 
+## Review Target
+
+If the user specifies what to review, use that target exactly. Valid targets include specific files, directories, commit ranges, branches, pull requests, changed files, or the full codebase.
+
+If the user does not specify a target, default to the current worktree:
+
+1. If there are staged or unstaged changes, review the working tree diff.
+2. If the working tree is clean, review the current branch against the repository default branch.
+3. Detect the default branch from `origin/HEAD`, falling back to `main` then `master`.
+
+Before starting the review, state the selected target briefly. Ask what to review only when no meaningful target can be inferred.
+
 ## Diff Detection
 
-Determine what to review:
+For diff-based review targets, determine the comparison to inspect:
 
 1. Run `git status`. If there are staged or unstaged changes, review the working tree diff (`git diff` and `git diff --cached`).
 2. If the working tree is clean, find the base branch. Detect it with `git symbolic-ref refs/remotes/origin/HEAD` (strips the `refs/remotes/origin/` prefix), falling back to `main` then `master` if that fails. Diff the current branch against it: `git diff $(git merge-base HEAD <base>)..HEAD`.
