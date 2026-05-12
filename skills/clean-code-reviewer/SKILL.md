@@ -11,13 +11,7 @@ Orchestrates a full code review by inspecting the diff, selecting relevant skill
 
 If the user specifies what to review, use that target exactly. Valid targets include specific files, directories, commit ranges, branches, pull requests, changed files, or the full codebase.
 
-If the user does not specify a target, default to the current worktree:
-
-1. If there are staged or unstaged changes, review the working tree diff.
-2. If the working tree is clean, review the current branch against the repository default branch.
-3. Detect the default branch from `origin/HEAD`, falling back to `main` then `master`.
-
-Before starting the review, state the selected target briefly. Ask what to review only when no meaningful target can be inferred.
+If the user does not specify a target, follow Diff Detection below to determine what to review. Before starting, state the selected target briefly. Ask only when no meaningful target can be inferred.
 
 ## Diff Detection
 
