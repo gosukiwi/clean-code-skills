@@ -10,10 +10,9 @@ Robert C. Martin's Clean Code rules for modern TypeScript projects.
   - `clean-code` — top-level router across all tracks
   - `clean-code-reviewer/` — orchestrates full code review (style + correctness)
   - `clean-code-reviewer-correctness/` — correctness-only review pass
-  - `typescript/` — TypeScript skills (functions, modules, async, errors, boundaries, names, tests, etc.)
-  - `react/` — React skills (components, hooks, state, tests, file organization)
-  - `css/` — CSS skill (tokens, layout, accessibility, responsive)
-- `bin/` — install script for deploying skills to projects
+  - `clean-typescript-*` — TypeScript skills (functions, modules, async, errors, boundaries, names, tests, etc.)
+  - `clean-react-*` — React skills (components, hooks, state, tests, file organization)
+  - `clean-css` — CSS skill (tokens, layout, accessibility, responsive)
 - `docs/` — specs and design documents
 
 ## How Skills Work
@@ -26,7 +25,8 @@ against the `description` field.
 ## When Editing Skills
 
 - Each skill has a `SKILL.md` as its entry point
-- Skills reference siblings via relative paths (e.g., `../clean-react/SKILL.md`)
+- Skills may reference sibling skills from inside a skill directory via relative
+  paths (e.g., `../clean-react/SKILL.md`)
 - The `clean-code-reviewer` dispatches concurrent style and correctness passes
 - Rule IDs are stable (e.g., R11, CSS6, F3) — do not renumber without updating all references
 - Test skill changes with AI agents before considering them complete

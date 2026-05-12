@@ -7,9 +7,21 @@ description: Use when reviewing code, pull requests, branches, diffs, or changed
 
 Orchestrates a full code review by inspecting the diff, selecting relevant skills, and dispatching concurrent review passes for style and correctness.
 
+## Review Target
+
+If the user specifies what to review, use that target exactly. Valid targets include specific files, directories, commit ranges, branches, pull requests, changed files, or the full codebase.
+
+If the user does not specify a target, default to the current worktree:
+
+1. If there are staged or unstaged changes, review the working tree diff.
+2. If the working tree is clean, review the current branch against the repository default branch.
+3. Detect the default branch from `origin/HEAD`, falling back to `main` then `master`.
+
+Before starting the review, state the selected target briefly. Ask what to review only when no meaningful target can be inferred.
+
 ## Diff Detection
 
-Determine what to review:
+For diff-based review targets, determine the comparison to inspect:
 
 1. Run `git status`. If there are staged or unstaged changes, review the working tree diff (`git diff` and `git diff --cached`).
 2. If the working tree is clean, find the base branch. Detect it with `git symbolic-ref refs/remotes/origin/HEAD` (strips the `refs/remotes/origin/` prefix), falling back to `main` then `master` if that fails. Diff the current branch against it: `git diff $(git merge-base HEAD <base>)..HEAD`.
@@ -63,7 +75,7 @@ Run two review passes in parallel:
 
 **Step 2 — Read relevant sub-skills.** For any TypeScript or React files, always load `clean-typescript-names`, `clean-typescript-comments`, and `clean-typescript-general` — naming, comment hygiene, and general code quality apply to all code regardless of diff content. For all other sub-skills, scan the diff and load only those matching the rule categories you observe. Do not load all sub-skills.
 
-All skills are installed as siblings in the same directory. Reference them as `../clean-typescript-<name>/SKILL.md` for TypeScript sub-skills and `../clean-react-<name>/SKILL.md` for React sub-skills. Use the Skill Routing table in each index to map rule codes to sub-skill names.
+All skills are installed as siblings in the same directory. Reference TypeScript sub-skills with the sibling path pattern `../clean-typescript-{topic}/SKILL.md` and React sub-skills with `../clean-react-{topic}/SKILL.md`. Use the Skill Routing table in each index to map rule codes to sub-skill names.
 
 **Step 3 — Apply and report.** Apply all loaded skills to the diff. Report findings with rule IDs.
 
