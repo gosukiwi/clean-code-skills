@@ -82,7 +82,7 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 | Broad duplication, intent, magic values, dead code | `clean-typescript-general` |
 | Comments and TSDoc | `clean-typescript-comments` |
 | Functions, arguments, mutation, flags | `clean-typescript-functions` |
-| Variables or constants declared far from their use, single-use module-level constants, files mixing unrelated responsibilities, vendor SDK types leaking into domain code, pass-through wrappers, dependency construction inside business logic, hidden init/load/run sequences, sprawling public exports | `clean-typescript-modules` |
+| Modules, classes, file order, cohesion, coupling, dependency construction, over-abstraction | `clean-typescript-modules` |
 | Promises, retries, timeouts, cancellation, race conditions | `clean-typescript-async` |
 | Error handling and fallbacks | `clean-typescript-error-handling` |
 | APIs, JSON, config, storage, SDKs | `clean-typescript-boundaries` |

@@ -42,7 +42,7 @@ function sendDigest(users: User[], now: Date) {
 }
 ```
 
-Module-level constants are fine when actually shared across multiple call sites or when they define a true policy. A module-level const used in exactly one place should still live next to that use — being at module scope doesn't exempt it from proximity.
+Module-level constants are fine when they define a true policy or when their uses span the file. When a const's uses cluster in one region, declare it next to that region — being at module scope doesn't exempt it from proximity.
 
 ```ts
 // Bad - top-of-file flag, only use is many lines later
