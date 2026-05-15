@@ -42,7 +42,23 @@ function sendDigest(users: User[], now: Date) {
 }
 ```
 
-Module-level constants are fine when they are shared by multiple functions or define a true policy. Do not lift locals only to make a function look shorter.
+Module-level constants are fine when actually shared across multiple call sites or when they define a true policy. A module-level const used in exactly one place should still live next to that use — being at module scope doesn't exempt it from proximity.
+
+```ts
+// Bad - top-of-file flag, only use is many lines later
+const ENABLE_SCHEDULER = process.env["ENABLE_SCHEDULER"] === "true";
+const app = express();
+// ...many lines of route setup...
+if (ENABLE_SCHEDULER) cron.schedule("0 8 * * 1", runWeeklyReport);
+
+// Good - flag lives next to its only consumer
+const app = express();
+// ...many lines of route setup...
+const ENABLE_SCHEDULER = process.env["ENABLE_SCHEDULER"] === "true";
+if (ENABLE_SCHEDULER) cron.schedule("0 8 * * 1", runWeeklyReport);
+```
+
+Do not lift locals only to make a function look shorter.
 
 ## M2: Order Code For Top-Down Reading
 
