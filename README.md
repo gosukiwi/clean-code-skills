@@ -15,7 +15,6 @@ maintainable styling.
 | All | `clean-code` | Top-level router for clean-code review across TypeScript, React, and CSS | Routes to relevant skills |
 | Review | `clean-code-reviewer` | Orchestrates full code review with concurrent style and correctness passes | Dispatches style + correctness agents |
 | Review | `clean-code-reviewer-correctness` | Functional review for bugs, security, performance, and test coverage gaps | Correctness, Security, Performance, Test Coverage |
-| TypeScript | `clean-as-you-go` | Orchestrator for small cleanup while editing existing TypeScript | Coordinates TypeScript skills |
 | TypeScript | `clean-typescript` | Master TypeScript index and review guide | A1-A5, C1-C5, E1-E2, EH1-EH4, F1-F7, G1-G5, M1-M6, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T11 |
 | TypeScript | `clean-typescript-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
 | TypeScript | `clean-typescript-functions` | Focused functions with clear call sites | F1-F7 |

@@ -81,7 +81,9 @@ Load `clean-code-reviewer-correctness`. Apply it to the full diff. This pass rev
 
 Combine findings from both passes into a single report.
 
-**Deduplication rule:** If the correctness pass flags a code region, suppress any style finding that overlaps the same region. The correctness fix will resolve the style issue — reporting both is noise. Only keep the style finding if it addresses a genuinely independent concern at the same location.
+**Within-pass dedup (Style):** When multiple style rules flag the same code region with the same fix, collapse them to one finding under the most specific rule, citing supporting rules in parentheses (e.g., `Style (M5; also touches M8, G1)`). See the "Rule Precedence" section in `../clean-typescript/SKILL.md` for the specificity order and the pairs that stay independent.
+
+**Cross-pass dedup (Style ↔ Correctness):** If the correctness pass flags a code region, suppress any style finding that overlaps the same region. The correctness fix will resolve the style issue — reporting both is noise. Only keep the style finding if it addresses a genuinely independent concern at the same location.
 
 ## Output Format
 

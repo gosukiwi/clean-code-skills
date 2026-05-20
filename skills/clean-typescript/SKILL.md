@@ -90,6 +90,48 @@ Use this as the TypeScript entry point. It routes broad review work to focused s
 | Names | `clean-typescript-names` |
 | Tests | `clean-typescript-tests` |
 
+## Rule Precedence (When Findings Overlap)
+
+A single code region often matches multiple rules. Without precedence, the same issue gets reported 2-4 times under different IDs and the review becomes noise.
+
+**Core rule:** If two findings have the **same Fix**, collapse to one finding under the most specific rule and cite the others in parentheses. If two findings have **different Fixes**, keep them separate even when they touch the same line.
+
+**Specificity order — the more specific rule wins:**
+
+- **B1-B4 (Boundaries) > TS3 / G2 / OD1** at the system edge. An unvalidated cast of external data is **B1**, not "use `unknown` (TS3)" or "obscured intent (G2)".
+- **M5 (empty abstraction) > M8 / G1** for pass-through wrappers. A module that re-exports without adding behavior is **M5**; the wide export surface (M8) and duplicated re-export (G1) are downstream effects of the same mistake — same fix (delete the wrapper), one finding.
+- **F-rules > G-rules** inside a function. **Lead with the F-rule; cite G-rules in parens.** A dead helper is **F4** (with G5 in parens), not the other way around. A function doing two things via a flag is **F3**, not G4.
+- **F2 (no output arguments) > A3 (no shared mutable state across awaits)** for direct parameter mutation. `arg.field = value` inside one async function is **F2**. A3 is reserved for genuine cross-call races: a module-level mutable value read and written across awaits by concurrent callers.
+- **G1 > G3** when a named constant exists but a literal is used at another call site. `MAX_RETRIES = 3` declared and used in the loop, but the literal `3` also appearing in `"Failed after 3 retries"`, is **G1** (two representations of the same fact); G3 is implied.
+
+**Rules that look similar but stay independent — report both:**
+
+- **B1 vs B2/OD4** — B1 is "validate external input"; B2/OD4 is "separate DTOs from domain models". Different fixes (add a parser vs split the type). A handler can have both.
+- **EH3 vs EH1** — EH3 is structural (no catch / swallowed error); EH1 is informational (caught but no context). Different fixes (add try/catch vs add `cause`/message context).
+
+**Finding format under precedence:**
+
+```
+[S1] Severity: Fix
+Category: Style (M5; also touches M8, G1)
+Location: src/userRepoWrapper.ts:1-9
+Issue: ...
+Fix: ...
+```
+
+The lead rule is the primary citation. Supporting rules go in parentheses only when they describe the same region with the same fix. If a related rule has an independent fix, give it its own finding.
+
+**Cross-reference collapse:** If a finding's Issue or Fix text contains a phrase like "see also [Sx]", "resolved by fixing [Sx]", "subsumed by [Sx]", "if [Sx] is accepted this resolves", or "applies only if [Sx] is rejected" — that is direct evidence the two findings are not independent. Collapse the dependent finding into the referenced one and add the dependent rule in parentheses on the surviving finding. The presence of a cross-reference is itself the signal; do not write the cross-reference and then keep both findings.
+
+**Red flags — you are about to over-report:**
+
+- Two findings on the same line with copy-paste Fix sections.
+- A finding whose Issue text says "see also [Sx]" or "resolved by fixing [Sx]".
+- Three rules cited in three findings against the same wrapper module.
+- Citing both the general rule (G-) and the specific rule (F-/M-/B-) as separate findings.
+
+If you catch yourself doing any of these, collapse to one finding under the more specific rule.
+
 ## TypeScript Precision
 - Prefer `satisfies` when validating object literals without widening useful literal types.
 - Avoid `as` assertions unless crossing a boundary that cannot express the type; narrow first when possible.
