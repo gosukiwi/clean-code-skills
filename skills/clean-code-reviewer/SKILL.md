@@ -44,9 +44,10 @@ From the changed file list, classify each file:
 | Pattern | Track |
 |---------|-------|
 | `.ts`, `.tsx` (no JSX) | TypeScript |
+| `.py`, `.pyi` | Python |
 | `.tsx` with React imports or JSX | React + TypeScript |
 | `.css`, `.module.css`, `.scss`, styled templates, Tailwind classes | CSS |
-| Test files (`*.test.*`, `*.spec.*`) | Tests |
+| Test files (`*.test.*`, `*.spec.*`, `test_*.py`, `*_test.py`) | Tests |
 | New or moved `.ts`, `.tsx`, `.jsx`, `.module.css` files | File Organization |
 
 To detect new or moved files, run `git diff --diff-filter=AR` (with the same target used above). If any `.ts`, `.tsx`, `.jsx`, or `.module.css` files appear, add "File Organization" to the tracks for the Style Pass.
@@ -62,14 +63,15 @@ Run two review passes in parallel:
 | Files | Read |
 |-------|------|
 | `.ts`, `.tsx` (TypeScript) | `../clean-typescript/SKILL.md` |
+| `.py`, `.pyi` (Python) | `../clean-python/SKILL.md` |
 | React (JSX / React imports) | `../clean-react/SKILL.md` + `../clean-typescript/SKILL.md` |
 | `.css`, `.module.css`, `.scss`, styled, Tailwind | `../clean-css/SKILL.md` |
-| Test files (`*.test.*`, `*.spec.*`) | `../clean-typescript-tests/SKILL.md` or `../clean-react-tests/SKILL.md` |
+| Test files (`*.test.*`, `*.spec.*`, `test_*.py`, `*_test.py`) | `../clean-typescript-tests/SKILL.md`, `../clean-react-tests/SKILL.md`, or `../clean-python-tests/SKILL.md` |
 | New/moved `.ts`, `.tsx`, `.jsx`, `.module.css` | `../clean-react-file-organization/SKILL.md` |
 
-**Step 2 — Read relevant sub-skills.** For any TypeScript or React files, always load `clean-typescript-names`, `clean-typescript-comments`, and `clean-typescript-general` — naming, comment hygiene, and general code quality apply to all code regardless of diff content. For all other sub-skills, scan the diff and load only those matching the rule categories you observe. Do not load all sub-skills.
+**Step 2 — Read relevant sub-skills.** For any TypeScript, Python, or React files, always load `clean-general-names`, `clean-general-comments`, and `clean-general` — naming, comment hygiene, and general code quality apply to all code regardless of diff content. For all other sub-skills, scan the diff and load only those matching the rule categories you observe. Do not load all sub-skills.
 
-All skills are installed as siblings in the same directory. Reference TypeScript sub-skills with the sibling path pattern `../clean-typescript-{topic}/SKILL.md` and React sub-skills with `../clean-react-{topic}/SKILL.md`. Use the Skill Routing table in each index to map rule codes to sub-skill names.
+All skills are installed as siblings in the same directory. Reference TypeScript sub-skills with the sibling path pattern `../clean-typescript-{topic}/SKILL.md`, Python sub-skills with `../clean-python-{topic}/SKILL.md`, general skills at `../clean-general/SKILL.md`, `../clean-general-names/SKILL.md`, and `../clean-general-comments/SKILL.md`, and React sub-skills with `../clean-react-{topic}/SKILL.md`. Use the Skill Routing table in each index to map rule codes to sub-skill names.
 
 **Step 3 — Apply and report.** Apply all loaded skills to the diff. Report findings with rule IDs.
 
@@ -81,7 +83,7 @@ Load `clean-code-reviewer-correctness`. Apply it to the full diff. This pass rev
 
 Combine findings from both passes into a single report.
 
-**Within-pass dedup (Style):** When multiple style rules flag the same code region with the same fix, collapse them to one finding under the most specific rule, citing supporting rules in parentheses (e.g., `Style (M5; also touches M8, G1)`). See the "Rule Precedence" section in `../clean-typescript/SKILL.md` for the specificity order and the pairs that stay independent.
+**Within-pass dedup (Style):** When multiple style rules flag the same code region with the same fix, collapse them to one finding under the most specific rule, citing supporting rules in parentheses (e.g., `Style (M5; also touches M8, G1)`). See the "Rule Precedence" section in `../clean-typescript/SKILL.md` or `../clean-python/SKILL.md` for the specificity order and the pairs that stay independent.
 
 **Cross-pass dedup (Style ↔ Correctness):** If the correctness pass flags a code region, suppress any style finding that overlaps the same region. The correctness fix will resolve the style issue — reporting both is noise. Only keep the style finding if it addresses a genuinely independent concern at the same location.
 

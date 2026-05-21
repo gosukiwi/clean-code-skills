@@ -3,30 +3,42 @@
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Compatible-blue)](https://agentskills.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Agent Skills for writing cleaner TypeScript, React, and CSS. The skills adapt
-Robert C. Martin's Clean Code rules for modern TypeScript projects and add
-focused guidance for React components, hooks, state, UI tests, and
-maintainable styling.
+Agent Skills for writing cleaner TypeScript, Python, React, and CSS. This is a
+general clean-code skill collection: shared rules cover naming, comments, and
+basic design; language tracks cover TypeScript and Python; UI tracks cover
+React and CSS.
+
+The skills adapt Robert C. Martin's Clean Code rules for modern TypeScript and
+Python projects, with focused guidance for React components, hooks, state, UI
+tests, and maintainable styling.
 
 ## What's Included
 
 | Track | Skill | Description | Rules |
 |-------|-------|-------------|-------|
-| All | `clean-code` | Top-level router for clean-code review across TypeScript, React, and CSS | Routes to relevant skills |
+| All | `clean-code` | Top-level router for clean-code review across TypeScript, Python, React, and CSS | Routes to relevant skills |
 | Review | `clean-code-reviewer` | Orchestrates full code review with concurrent style and correctness passes | Dispatches style + correctness agents |
 | Review | `clean-code-reviewer-correctness` | Functional review for bugs, security, performance, and test coverage gaps | Correctness, Security, Performance, Test Coverage |
-| TypeScript | `clean-typescript` | Master TypeScript index and review guide | A1-A5, C1-C5, E1-E2, EH1-EH4, F1-F7, G1-G5, M1-M6, B1-B4, OD1-OD5, N1-N7, TS1-TS3, T1-T11 |
-| TypeScript | `clean-typescript-comments` | Minimal, accurate comments and TSDoc | C1-C5 |
-| TypeScript | `clean-typescript-functions` | Focused functions with clear call sites | F1-F7 |
-| TypeScript | `clean-typescript-modules` | Cohesive files, classes, declaration locality, dependency construction, and useful abstractions | M1-M6 |
+| General | `clean-general` | Language-neutral duplication, intent, magic values, single responsibility, and dead code | G1-G5 |
+| General | `clean-general-comments` | Language-neutral minimal and accurate comments/docs | C1-C5 |
+| General | `clean-general-names` | Language-neutral descriptive and unambiguous names | N1-N7 |
+| TypeScript | `clean-typescript` | Master TypeScript index and review guide | A1-A5, C1-C5, EH1-EH4, F1-F9, G1-G5, M1-M8, B1-B4, OD1-OD7, N1-N7, TS1-TS3, T1-T11 |
+| TypeScript | `clean-typescript-functions` | Focused functions with clear call sites | F1-F9 |
+| TypeScript | `clean-typescript-modules` | Cohesive files, classes, declaration locality, dependency construction, and useful abstractions | M1-M8 |
 | TypeScript | `clean-typescript-async` | Explicit async ordering, cancellation, retries, timeouts, and race-prone tests | A1-A5 |
 | TypeScript | `clean-typescript-error-handling` | Exceptions, catch blocks, recoverable failures, and fallbacks | EH1-EH4 |
 | TypeScript | `clean-typescript-boundaries` | APIs, JSON, env vars, storage, databases, SDKs, and external data | B1-B4 |
-| TypeScript | `clean-typescript-objects-data` | DTOs, domain models, discriminated unions, and object boundaries | OD1-OD5 |
-| TypeScript | `clean-typescript-general` | Duplication, intent, magic values, single responsibility, and dead code | G1-G5 |
-| TypeScript | `clean-typescript-names` | Descriptive and unambiguous names | N1-N7 |
+| TypeScript | `clean-typescript-objects-data` | DTOs, domain models, discriminated unions, and object boundaries | OD1-OD7 |
 | TypeScript | `clean-typescript-tests` | Fast, boundary-aware TypeScript tests | T1-T11 |
-| React | `clean-react` | Master React index and review guide | R1-R11 |
+| Python | `clean-python` | Master Python index and review guide | A1-A5, C1-C5, EH1-EH4, F1-F9, G1-G5, M1-M8, B1-B4, OD1-OD7, N1-N7, PY1-PY5, T1-T11 |
+| Python | `clean-python-functions` | Focused Python functions with clear call sites and no mutable defaults | F1-F9, PY4 |
+| Python | `clean-python-modules` | Cohesive modules, imports, dependency construction, public exports, and useful abstractions | M1-M8 |
+| Python | `clean-python-async` | Explicit asyncio ordering, cancellation, retries, timeouts, and race-prone tests | A1-A5 |
+| Python | `clean-python-error-handling` | Exceptions, broad catches, recoverable failures, and fallbacks | EH1-EH4 |
+| Python | `clean-python-boundaries` | APIs, JSON, env vars, storage, databases, SDKs, subprocesses, and external data | B1-B4 |
+| Python | `clean-python-objects-data` | Dataclasses, DTOs, domain models, typed unions, Protocols, and object boundaries | OD1-OD7 |
+| Python | `clean-python-tests` | Fast, boundary-aware Python tests | T1-T11 |
+| React | `clean-react` | Master React index and review guide | R1-R15 |
 | React | `clean-react-components` | Component boundaries, props, JSX, and composition | R1-R3 |
 | React | `clean-react-hooks` | Effects, dependencies, custom hooks, refs, and memoization | R4, R8 |
 | React | `clean-react-state` | Local state, derived state, reducers, context, and server state | R5-R7 |
@@ -35,7 +47,7 @@ maintainable styling.
 | CSS | `clean-css` | Tokens, layout, selectors, responsive behavior, and visual accessibility | CSS1-CSS8 |
 
 Use `clean-code` for broad review across the full collection. Use the track
-master skills for TypeScript or React review and individual skills for
+master skills for TypeScript, Python, or React review and individual skills for
 targeted guidance.
 
 ## Installation
@@ -106,7 +118,7 @@ changes." The reviewer inspects the diff, selects relevant skills, and runs
 concurrent style and correctness passes.
 
 For style-only review, ask for `clean-code`. The `clean-code` skill routes to
-every relevant TypeScript, React, and CSS skill.
+every relevant TypeScript, Python, React, CSS, and general skill.
 
 ## Example
 
@@ -195,7 +207,7 @@ What improved:
 | C4 | Write comments well if needed |
 | C5 | Never commit commented-out code |
 
-### Functions (F1-F7)
+### Functions (F1-F9)
 
 | Rule | Principle |
 |------|-----------|
@@ -206,8 +218,10 @@ What improved:
 | F5 | Reduce nesting with early returns, helper functions, extraction, or refactoring |
 | F6 | Keep one level of abstraction per function |
 | F7 | Name and simplify complex conditions |
+| F8 | Separate commands from queries |
+| F9 | Keep side effects explicit and isolated |
 
-### Modules (M1-M6)
+### Modules (M1-M8)
 
 | Rule | Principle |
 |------|-----------|
@@ -217,6 +231,8 @@ What improved:
 | M4 | Keep dependency direction obvious |
 | M5 | Avoid empty abstractions |
 | M6 | Separate construction from use |
+| M7 | Avoid temporal coupling |
+| M8 | Keep public exports small and intentional |
 
 ### Async (A1-A5)
 
@@ -256,7 +272,7 @@ What improved:
 | B3 | Keep vendor types out of domain code unless they are the domain |
 | B4 | Test tricky boundary mappings and invalid external shapes |
 
-### Objects And Data (OD1-OD5)
+### Objects And Data (OD1-OD7)
 
 | Rule | Principle |
 |------|-----------|
@@ -265,6 +281,8 @@ What improved:
 | OD3 | Model impossible states out with discriminated unions |
 | OD4 | Keep DTOs separate from domain models when external shape differs |
 | OD5 | Avoid excessive object-chain knowledge |
+| OD6 | Represent absence explicitly |
+| OD7 | Replace repeated conditionals |
 
 ### Names (N1-N7)
 
@@ -286,6 +304,16 @@ What improved:
 | TS2 | Prefer literal unions, discriminated unions, or const objects for closed sets |
 | TS3 | Type public interfaces and avoid `any` at boundaries |
 
+### Python (PY1-PY5)
+
+| Rule | Principle |
+|------|-----------|
+| PY1 | Type public functions, class attributes, and boundary values |
+| PY2 | Use dataclasses, `TypedDict`, `Protocol`, enums, or literal unions for real contracts |
+| PY3 | Prefer context managers for resources |
+| PY4 | Avoid mutable default arguments and hidden shared state |
+| PY5 | Keep dynamic features behind clear boundaries |
+
 ### Tests (T1-T11)
 
 | Rule | Principle |
@@ -302,7 +330,7 @@ What improved:
 | T10 | Prefer data builders over brittle fixtures |
 | T11 | Test behavior contracts, not incidental implementation details |
 
-### React (R1-R11)
+### React (R1-R15)
 
 | Rule | Principle |
 |------|-----------|
@@ -317,6 +345,10 @@ What improved:
 | R9 | Event handlers should describe user intent |
 | R10 | React tests should assert user-visible behavior, not incidental styling details |
 | R11 | Organize files by dependency ownership |
+| R12 | Model mutually exclusive component modes with discriminated union props |
+| R13 | Render explicit loading, error, empty, and success states |
+| R14 | Keep render pure |
+| R15 | Prefer realistic test data builders over brittle inline fixtures |
 
 ### CSS (CSS1-CSS8)
 

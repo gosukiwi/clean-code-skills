@@ -25,17 +25,18 @@ Look for:
 - **Unhandled states**: Switch/if chains that miss a discriminant, async code that doesn't handle rejection, promises that can resolve to unexpected shapes.
 - **Behavioral mismatch**: The code does something different from what the commit message, PR description, function name, or surrounding comments say it does.
 - **Type narrowing gaps**: Assertions (`as`) that skip runtime validation, `unknown` that is never narrowed, generic constraints that are too wide for the actual usage.
+- **Python typing gaps with runtime impact**: Untyped public contracts, unchecked `Any`/dict payloads, mutable default arguments, or casts that hide invalid external data.
 - **Broken contracts**: Functions that violate their documented or implied contract — a `find` that can return `undefined` but the caller assumes it always finds, a sort comparator that isn't consistent.
 
 ## Security
 
 Look for:
 
-- **Injection**: SQL concatenation with user input, `innerHTML` or `dangerouslySetInnerHTML` with unsanitized data, shell command construction from user strings, template literal injection in queries.
+- **Injection**: SQL concatenation with user input, `innerHTML` or `dangerouslySetInnerHTML` with unsanitized data, shell command construction from user strings, unsafe `subprocess(..., shell=True)`, template literal injection in queries.
 - **Exposed secrets**: API keys, tokens, passwords, or private keys hardcoded in source, committed `.env` files, secrets logged or included in error messages sent to clients.
-- **Unsafe evaluation**: `eval()`, `new Function()`, `setTimeout(string)`, or dynamic `import()` with user-controlled paths.
+- **Unsafe evaluation**: `eval()`, `exec()`, `new Function()`, `setTimeout(string)`, dynamic `import()` with user-controlled paths, or unsafe deserialization such as `pickle`/`yaml.load` on untrusted input.
 - **Prototype pollution**: Object spread or assignment from unvalidated external input without freezing or allowlisting keys.
-- **Insecure randomness**: `Math.random()` used for tokens, session IDs, or anything security-sensitive (should use `crypto`).
+- **Insecure randomness**: `Math.random()` or Python `random` used for tokens, session IDs, or anything security-sensitive (should use cryptographic randomness such as Web Crypto, Node `crypto`, or Python `secrets`).
 - **Missing authentication/authorization checks**: New endpoints or routes that skip auth middleware, privilege escalation paths where role checks are absent.
 
 ## Performance
@@ -44,9 +45,9 @@ Look for:
 
 - **O(n²) or worse**: Nested loops over the same growing collection, `.find()` or `.includes()` inside `.filter()` or `.map()` over large arrays (use a Set or Map).
 - **N+1 patterns**: Fetching related data inside a loop instead of batching, one query per item in a list.
-- **Unbounded growth**: Arrays, maps, or caches that grow without eviction, event listeners registered without cleanup, subscriptions that never unsubscribe.
+- **Unbounded growth**: Arrays/lists, maps/dicts, or caches that grow without eviction, event listeners registered without cleanup, subscriptions that never unsubscribe.
 - **Unnecessary re-renders** (React): Missing `key` props, unstable object/array/function references in dependency arrays or props, expensive computation in render without memoization when the component renders frequently.
-- **Blocking the main thread**: Synchronous file I/O, heavy computation without yielding, `JSON.parse` on unbounded input without a worker or streaming parser.
+- **Blocking the main thread/event loop**: Synchronous file I/O in async paths, heavy computation without yielding, `JSON.parse`/`json.loads` on unbounded input without a worker or streaming parser.
 - **Missing pagination/limits**: Queries or API calls that fetch all records without limit, unbounded `SELECT *` on tables that grow.
 
 ## Test Coverage Risk

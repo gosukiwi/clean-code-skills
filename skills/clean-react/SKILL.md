@@ -34,7 +34,7 @@ Use this with `clean-typescript`. React quality comes from small components, exp
 | Local state, derived state, reducers, server state | `clean-react-state` |
 | React Testing Library tests | `clean-react-tests` |
 | Owner folders, shared dependencies, CSS modules | `clean-react-file-organization` |
-| Names, comments, functions, general TypeScript | `clean-typescript` and focused TypeScript skills |
+| Names, comments, functions, general code quality | `clean-general`, `clean-general-names`, `clean-general-comments`, `clean-typescript`, and focused TypeScript skills |
 
 ## Review Checklist
 

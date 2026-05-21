@@ -1,6 +1,6 @@
 ---
-name: clean-typescript-comments
-description: Use when writing, fixing, or editing TypeScript comments or TSDoc, especially commented-out code, stale docs, metadata comments, redundant comments, TODO banners, or unclear comment value.
+name: clean-general-comments
+description: Use when writing, fixing, or editing comments or documentation in any language, especially commented-out code, stale docs, metadata comments, TODO banners, redundant comments, or unclear comment value.
 ---
 
 # Clean Comments
@@ -18,13 +18,13 @@ irrelevance and misdirection."
 
 ## C3: No Redundant Comments
 
-```ts
-// Bad - the code already says this
-i += 1; // increment i
-user.save(); // save the user
+```python
+# Bad - the code already says this
+i += 1  # increment i
+user.save()  # save the user
 
-// Good - explains WHY, not WHAT
-i += 1; // compensate for zero-indexing in display
+# Good - explains WHY, not WHAT
+i += 1  # compensate for zero-indexing in display
 ```
 
 ## C4: Write Comments Well
@@ -37,11 +37,10 @@ If a comment is worth writing, write it well:
 
 ## C5: Never Commit Commented-Out Code
 
-```ts
-// DELETE THIS - it's an abomination
-// function oldCalculateTax(income: number): number {
-//   return income * 0.15;
-// }
+```python
+# DELETE THIS
+# def old_calculate_tax(income: float) -> float:
+#     return income * 0.15
 ```
 
 Who knows how old it is? Who knows if it's meaningful? Delete it.
@@ -52,4 +51,4 @@ Git remembers everything.
 The best comment is the code itself. If you need a comment to explain
 what code does, refactor first, comment last.
 
-Good comments usually explain constraints, surprising trade-offs, external contracts, or why an obvious-looking alternative is wrong.
+Good comments and docstrings usually explain constraints, surprising trade-offs, external contracts, or why an obvious-looking alternative is wrong.
